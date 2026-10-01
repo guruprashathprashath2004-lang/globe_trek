@@ -1,0 +1,1293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GlobeTrek – Packages & Booking</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Css/Bookingpage Stylesheet.css" />
+  </head>
+  <body>
+    <header>
+      <div class="hdr">
+        <div class="logo">
+          <img alt="Logo" src="places/Logo2.png" height="30px" width="50px" />
+          GlobeTrek
+        </div>
+        <nav>
+          <a href="Homepage.html">Home</a>
+          <a href="Homepage.html#Destinations">Destinations</a>
+          <a href="Homepage.html#hotelsSection">Hotels</a>
+          <a href="Homepage.html#packagesSection" style="color: #2dd4b8"
+            >Packages</a
+          >
+          <a href="Homepage.html#footer">About</a>
+        </nav>
+        <div class="hdr-btns" id="userInfoSection">
+          <span class="material-icons" style="color: #2dd4b8; font-size: 1.2rem"
+            >account_circle</span
+          >
+          <span
+            id="userNameDisplay"
+            style="color: #f4fffe; font-size: 0.85rem; font-weight: 500"
+          ></span>
+          <span
+            id="userEmailDisplay"
+            style="color: rgba(244, 255, 254, 0.5); font-size: 0.75rem"
+          ></span>
+          <button
+            onclick="logout()"
+            class="btn-sm"
+            style="
+              background: transparent;
+              border: 1px solid #f87171;
+              color: #f87171;
+              padding: 0.45rem 1.1rem;
+              border-radius: 999px;
+              font-size: 0.82rem;
+              font-weight: 600;
+              cursor: pointer;
+            "
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-wrap">
+      <div class="page-hero">
+        <div class="eyebrow">Plan Your Trip</div>
+        <h1 class="page-title">Packages &amp; Booking</h1>
+        <p class="page-sub">
+          Tailored travel packages for every budget and dream.
+        </p>
+        <div class="hero-btns">
+          <button class="mybooking-btn" onclick="openMyBookings()">
+            📋 My Bookings
+          </button>
+        </div>
+      </div>
+
+      <div class="steps-grid" id="stepsGrid">
+        <div class="step-card" id="step1card">
+          <div class="step-num">01</div>
+          <div class="step-icon">📍</div>
+          <div class="step-label">Destination</div>
+          <div class="step-val" id="s1val">Not selected</div>
+        </div>
+        <div class="step-card" id="step2card">
+          <div class="step-num">02</div>
+          <div class="step-icon">👥</div>
+          <div class="step-label">Travelers</div>
+          <div class="step-val" id="s2val">Not set</div>
+        </div>
+        <div class="step-card" id="step3card">
+          <div class="step-num">03</div>
+          <div class="step-icon">📦</div>
+          <div class="step-label">Package</div>
+          <div class="step-val" id="s3val">Not chosen</div>
+        </div>
+        <div class="step-card" id="step4card">
+          <div class="step-num">04</div>
+          <div class="step-icon">💰</div>
+          <div class="step-label">Estimated Total</div>
+          <div class="step-val" id="s4val">LKR 0</div>
+        </div>
+      </div>
+
+      <div class="booking-layout">
+        <form class="form-wrap">
+          <div class="fsec">
+            <div class="fsec-head">
+              <div class="fsec-icon">👤</div>
+              <div class="fsec-title">Customer Details</div>
+            </div>
+            <div class="fgroup" style="margin-bottom: 0.8rem">
+              <label class="flabel">Full Name</label>
+              <input
+                class="finput"
+                type="text"
+                id="custName"
+                placeholder="Your full name"
+                oninput="updateSummary()"
+              />
+            </div>
+            <div class="frow">
+              <div class="fgroup">
+                <label class="flabel">Email</label>
+                <input
+                  class="finput"
+                  type="email"
+                  id="custEmail"
+                  placeholder="email@example.com"
+                  oninput="updateSummary()"
+                />
+              </div>
+              <div class="fgroup">
+                <label class="flabel">Phone</label>
+                <input
+                  class="finput"
+                  type="tel"
+                  id="custPhone"
+                  placeholder="+94 77..."
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="fsec">
+            <div class="fsec-head">
+              <div class="fsec-icon">📍</div>
+              <div class="fsec-title">Choose Destination</div>
+            </div>
+            <div class="province-grid" id="provGrid">
+              <div
+                style="
+                  grid-column: 1/-1;
+                  text-align: center;
+                  padding: 1.5rem;
+                  color: var(--muted);
+                "
+              >
+                <div class="dots"><span></span><span></span><span></span></div>
+              </div>
+            </div>
+            <div class="date-hint" id="provHint" style="display: none"></div>
+          </div>
+
+          <div class="fsec">
+            <div class="fsec-head">
+              <div class="fsec-icon">👥</div>
+              <div class="fsec-title">Travelers</div>
+            </div>
+            <div class="frow">
+              <div class="fgroup">
+                <label class="flabel">Adults (×1.0)</label>
+                <input
+                  class="finput"
+                  type="number"
+                  id="adults"
+                  min="1"
+                  max="20"
+                  value="2"
+                  oninput="
+                    calcTotal();
+                    updateSteps();
+                  "
+                />
+              </div>
+              <div class="fgroup">
+                <label class="flabel">Children (×0.5)</label>
+                <input
+                  class="finput"
+                  type="number"
+                  id="kids"
+                  min="0"
+                  max="10"
+                  value="0"
+                  oninput="
+                    calcTotal();
+                    updateSteps();
+                  "
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="fsec">
+            <div class="fsec-head">
+              <div class="fsec-icon">📦</div>
+              <div class="fsec-title">Package Type</div>
+            </div>
+            <div class="choice-grid cols2" id="packageGrid">
+              <div
+                style="
+                  grid-column: 1/-1;
+                  text-align: center;
+                  color: var(--muted);
+                "
+              >
+                Loading packages...
+              </div>
+            </div>
+          </div>
+
+          <div class="fsec">
+            <div class="fsec-head">
+              <div class="fsec-icon">📅</div>
+              <div class="fsec-title">Travel Dates</div>
+            </div>
+            <div class="frow">
+              <div class="fgroup">
+                <label class="flabel">Start Date</label>
+                <input
+                  class="finput"
+                  type="date"
+                  id="startDate"
+                  onchange="autoEndDate()"
+                />
+              </div>
+              <div class="fgroup">
+                <label class="flabel">End Date (auto-set)</label>
+                <input
+                  class="finput"
+                  type="date"
+                  id="endDate"
+                  onchange="calcDays()"
+                />
+              </div>
+            </div>
+            <div class="date-hint" id="dateHint" style="display: none"></div>
+          </div>
+
+          <div class="fsec">
+            <div class="fsec-head">
+              <div class="fsec-icon">🏨</div>
+              <div class="fsec-title">Hotel Selection</div>
+            </div>
+            <div class="frow">
+              <div class="fgroup">
+                <label class="flabel">Hotel Type</label>
+                <div class="choice-grid cols2" id="hotelTypeGrid">
+                  <div
+                    class="choice-btn"
+                    onclick="selectHotelType(this, 'normal')"
+                  >
+                    🏩 Normal
+                  </div>
+                  <div
+                    class="choice-btn"
+                    onclick="selectHotelType(this, 'luxury')"
+                  >
+                    🏰 Luxury
+                  </div>
+                </div>
+              </div>
+              <div class="fgroup">
+                <label class="flabel">Room Type</label>
+                <div class="choice-grid" id="roomTypeGrid">
+                  <div style="text-align: center; color: var(--muted)">
+                    Loading...
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="hotelListWrap" style="display: none">
+              <div
+                style="
+                  font-size: 0.68rem;
+                  text-transform: uppercase;
+                  letter-spacing: 0.08em;
+                  color: var(--muted);
+                  margin: 0.8rem 0 0.4rem;
+                "
+              >
+                Hotels in Province
+              </div>
+              <div class="hotel-list" id="hotelList">
+                <div class="dots"><span></span><span></span><span></span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fsec">
+            <div class="fsec-head">
+              <div class="fsec-icon">🚗</div>
+              <div class="fsec-title">Vehicle</div>
+            </div>
+            <div class="choice-grid cols3" id="vehicleGrid">
+              <div
+                style="
+                  grid-column: 1/-1;
+                  font-size: 0.8rem;
+                  color: var(--muted);
+                  text-align: center;
+                  padding: 0.5rem;
+                "
+              >
+                Select a package first
+              </div>
+            </div>
+          </div>
+
+          <div class="fsec">
+            <div class="fsec-head">
+              <div class="fsec-icon">🍽️</div>
+              <div class="fsec-title">Meal Plan</div>
+            </div>
+            <div class="choice-grid cols3" id="mealGrid">
+              <div style="text-align: center; color: var(--muted)">
+                Loading...
+              </div>
+            </div>
+          </div>
+
+          <div class="fsec">
+            <div class="fsec-head">
+              <div class="fsec-icon">🧭</div>
+              <div class="fsec-title">Tour Guide</div>
+            </div>
+            <div class="toggle-row" onclick="toggleGuide()">
+              <span class="toggle-label"
+                >Include a professional tour guide?</span
+              >
+              <div class="toggle-sw" id="guideSw"></div>
+            </div>
+            <div class="toggle-note">+ LKR 5,000 × trip days</div>
+          </div>
+
+          <div class="fsec">
+            <div class="fsec-head">
+              <div class="fsec-icon">💳</div>
+              <div class="fsec-title">Payment Method</div>
+            </div>
+            <div class="choice-grid cols3">
+              <div class="choice-btn" onclick="selectPay(this, 'card')">
+                💳 Card
+              </div>
+              <div class="choice-btn" onclick="selectPay(this, 'cash')">
+                💵 Cash
+              </div>
+              <div class="choice-btn" onclick="selectPay(this, 'online')">
+                📱 Online
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="sidebar">
+          <div class="total-card">
+            <div class="tc-head">📊 Live Estimate</div>
+            <div id="tcLines">
+              <div class="tc-line">
+                <span class="tc-key">Province</span
+                ><span class="tc-val" id="tc_prov">—</span>
+              </div>
+              <div class="tc-line">
+                <span class="tc-key">Travelers</span
+                ><span class="tc-val" id="tc_pax">—</span>
+              </div>
+              <div class="tc-line">
+                <span class="tc-key">Trip Days</span
+                ><span class="tc-val" id="tc_days">—</span>
+              </div>
+              <div class="tc-line">
+                <span class="tc-key">Package</span
+                ><span class="tc-val" id="tc_pkg">—</span>
+              </div>
+              <div class="tc-line">
+                <span class="tc-key">Hotel</span
+                ><span class="tc-val" id="tc_hotel">—</span>
+              </div>
+              <div class="tc-line">
+                <span class="tc-key">Vehicle</span
+                ><span class="tc-val" id="tc_veh">—</span>
+              </div>
+              <div class="tc-line">
+                <span class="tc-key">Meals</span
+                ><span class="tc-val" id="tc_meal">—</span>
+              </div>
+              <div class="tc-line">
+                <span class="tc-key">Guide</span
+                ><span class="tc-val" id="tc_guide">—</span>
+              </div>
+            </div>
+            <div class="tc-total">
+              <div>
+                <div class="tc-total-label">Estimated Total</div>
+                <div class="tc-advance" id="tc_advance">Advance 30%: LKR 0</div>
+              </div>
+              <div class="tc-amount" id="tc_amount">LKR 0</div>
+            </div>
+          </div>
+
+          <div class="summary-card">
+            <div class="sc-head">Booking Checklist</div>
+            <div class="sc-row" id="ck_name">
+              <div class="dot"></div>
+              Full Name
+            </div>
+            <div class="sc-row" id="ck_email">
+              <div class="dot"></div>
+              Email
+            </div>
+            <div class="sc-row" id="ck_prov">
+              <div class="dot"></div>
+              Province
+            </div>
+            <div class="sc-row" id="ck_pkg">
+              <div class="dot"></div>
+              Package
+            </div>
+            <div class="sc-row" id="ck_date">
+              <div class="dot"></div>
+              Dates
+            </div>
+            <div class="sc-row" id="ck_hotel">
+              <div class="dot"></div>
+              Hotel Type
+            </div>
+            <div class="sc-row" id="ck_veh">
+              <div class="dot"></div>
+              Vehicle
+            </div>
+            <div class="sc-row" id="ck_meal">
+              <div class="dot"></div>
+              Meal Plan
+            </div>
+            <div class="sc-row" id="ck_pay">
+              <div class="dot"></div>
+              Payment Method
+            </div>
+          </div>
+
+          <button class="confirm-btn" onclick="confirmBooking()">
+            ✅ Confirm Booking
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-copy">
+        © 2025 GlobeTrek Adventures. Negombo, Sri Lanka. All rights reserved.
+      </div>
+    </footer>
+
+    <div class="overlay" id="overlay">
+      <div class="modal">
+        <div class="modal-icon" id="mIcon"></div>
+        <div class="modal-title" id="mTitle"></div>
+        <div class="modal-msg" id="mMsg"></div>
+        <div class="modal-btns" id="mBtns"></div>
+      </div>
+    </div>
+
+    <div class="overlay" id="myBookingsOverlay">
+      <div class="modal" style="max-width: 520px; text-align: left">
+        <div
+          style="
+            font-family: &quot;Syne&quot;, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+            text-align: center;
+          "
+        >
+          📋 My Bookings
+        </div>
+        <div class="bookings-list" id="myBookingsList">
+          <div class="dots" style="justify-content: center; padding: 1rem">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 1rem">
+          <button class="mbtn mbtn-outline" onclick="closeMyBookings()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // State variables
+      let state = {
+        province: null,
+        provinceName: "",
+        provinceRec: 0,
+        adults: 2,
+        kids: 0,
+        package: "",
+        vehicle: "",
+        vehicleCost: 0,
+        hotelType: "",
+        roomType: "",
+        roomMultiplier: 1,
+        meal: "",
+        mealCostPerPerson: 0,
+        guide: false,
+        pay: "",
+        numDays: 0,
+        startDate: "",
+        endDate: "",
+        hotels: [],
+        roomTypes: [],
+        mealPlans: [],
+      };
+
+      // Constants
+      const hotelBase = { normal: 7000, luxury: 15000 };
+      const guideCostPerDay = 5000;
+
+      // Load all data from database
+      async function loadInitialData() {
+        await loadProvinces();
+        await loadPackages();
+        await loadRoomTypes();
+        await loadMealPlans();
+      }
+
+      async function loadProvinces() {
+        try {
+          const response = await fetch("booking.php?action=getProvinces");
+          const provinces = await response.json();
+          const provGrid = document.getElementById("provGrid");
+          provGrid.innerHTML = "";
+          provinces.forEach((prov) => {
+            const btn = document.createElement("div");
+            btn.className = "prov-btn";
+            btn.dataset.id = prov.id;
+            btn.dataset.name = prov.name;
+            btn.dataset.days = prov.recommended_days;
+            btn.innerHTML = `<span class="prov-name">${prov.name}</span><span class="prov-days">${prov.recommended_days} days</span>`;
+            btn.onclick = () => selectProvince(btn);
+            provGrid.appendChild(btn);
+          });
+        } catch (error) {
+          console.error("Error loading provinces:", error);
+        }
+      }
+
+      async function loadPackages() {
+        try {
+          const response = await fetch("booking.php?action=getPackages");
+          const packages = await response.json();
+          const packageGrid = document.getElementById("packageGrid");
+          const packageMap = {
+            budget: "💰 Budget",
+            normal: "🌿 Normal",
+            premium: "✨ Premium",
+            luxury: "👑 Luxury",
+          };
+          packageGrid.innerHTML = packages
+            .map(
+              (pkg) => `
+            <div class="choice-btn" onclick="selectPackage(this,'${pkg.name}')">
+                ${packageMap[pkg.name] || pkg.display_name}
+                <span class="cbdesc">${pkg.description.substring(0, 30)}...</span>
+            </div>
+        `,
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error loading packages:", error);
+        }
+      }
+
+      async function loadRoomTypes() {
+        try {
+          const response = await fetch("booking.php?action=getRoomTypes");
+          state.roomTypes = await response.json();
+          const roomGrid = document.getElementById("roomTypeGrid");
+          roomGrid.innerHTML = state.roomTypes
+            .map(
+              (room) => `
+            <div class="choice-btn" onclick="selectRoom(this,'${room.room_key}',${room.multiplier})">
+                ${room.room_name}
+                <span class="cbdesc">×${room.multiplier}</span>
+            </div>
+        `,
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error loading room types:", error);
+        }
+      }
+
+      async function loadMealPlans() {
+        try {
+          const response = await fetch("booking.php?action=getMealPlans");
+          state.mealPlans = await response.json();
+          const mealGrid = document.getElementById("mealGrid");
+          mealGrid.innerHTML = state.mealPlans
+            .map(
+              (meal) => `
+            <div class="choice-btn" onclick="selectMeal(this,'${meal.meal_key}',${meal.cost_per_person})">
+                ${meal.meal_name}
+                <span class="cbprice">${meal.cost_per_person > 0 ? "+LKR " + meal.cost_per_person.toLocaleString() + "/pax/day" : "Free"}</span>
+            </div>
+        `,
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error loading meal plans:", error);
+        }
+      }
+
+      async function loadVehicles() {
+        if (!state.package) return;
+        try {
+          const response = await fetch(
+            `booking.php?action=getVehicles&package=${state.package}`,
+          );
+          const vehicles = await response.json();
+          const vehicleGrid = document.getElementById("vehicleGrid");
+          if (!vehicles.length) {
+            vehicleGrid.innerHTML =
+              '<div style="grid-column:1/-1;font-size:.8rem;color:var(--muted);text-align:center;padding:.5rem">No vehicles available</div>';
+            return;
+          }
+          vehicleGrid.innerHTML = vehicles
+            .map(
+              (veh) => `
+            <div class="choice-btn" onclick="selectVehicle(this,'${veh.vehicle_key}',${veh.cost})">
+                ${veh.vehicle_label}
+                <span class="cbprice">LKR ${veh.cost.toLocaleString()}</span>
+            </div>
+        `,
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error loading vehicles:", error);
+        }
+      }
+
+      async function loadHotels() {
+        if (!state.province) return;
+        const wrap = document.getElementById("hotelListWrap");
+        const list = document.getElementById("hotelList");
+        wrap.style.display = "block";
+        list.innerHTML =
+          '<div class="dots"><span></span><span></span><span></span></div>';
+
+        try {
+          const response = await fetch(
+            `booking.php?action=getHotels&province_id=${state.province}`,
+          );
+          state.hotels = await response.json();
+          renderHotels();
+        } catch (error) {
+          list.innerHTML =
+            '<div style="font-size:.78rem;color:var(--muted)">Could not load hotels.</div>';
+        }
+      }
+
+      function renderHotels() {
+        const list = document.getElementById("hotelList");
+        if (!state.hotels.length) {
+          list.innerHTML =
+            '<div style="font-size:.78rem;color:var(--muted)">No hotels found.</div>';
+          return;
+        }
+
+        let filtered = state.hotels;
+        if (state.hotelType) {
+          filtered = state.hotels.filter(
+            (h) => h.hotel_type === state.hotelType,
+          );
+        }
+
+        const grouped = {};
+        filtered.forEach((hotel) => {
+          if (!grouped[hotel.district_name]) grouped[hotel.district_name] = [];
+          grouped[hotel.district_name].push(hotel);
+        });
+
+        let html = "";
+        Object.keys(grouped).forEach((dist) => {
+          html += `<div class="dist-header">${dist}</div>`;
+          grouped[dist].forEach((hotel) => {
+            html += `
+                <div class="hotel-item">
+                    <div><div class="hotel-name">${hotel.hotel_name}</div></div>
+                    <div class="hotel-price">LKR ${parseInt(hotel.price).toLocaleString()}</div>
+                </div>
+            `;
+          });
+        });
+        list.innerHTML = html;
+      }
+
+      function selectProvince(btn) {
+        document
+          .querySelectorAll(".prov-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        state.province = btn.dataset.id;
+        state.provinceName = btn.dataset.name;
+        state.provinceRec = parseInt(btn.dataset.days) || 3;
+        state.numDays = state.provinceRec;
+
+        document.getElementById("provHint").style.display = "block";
+        document.getElementById("provHint").textContent =
+          `📅 Recommended: ${state.provinceRec} days for ${state.provinceName}`;
+
+        const sd = document.getElementById("startDate").value;
+        if (sd) autoEndDate();
+
+        loadHotels();
+        calcTotal();
+        updateSteps();
+        markCheck("ck_prov", true);
+      }
+
+      function selectPackage(el, pkg) {
+        document
+          .querySelectorAll("#packageGrid .choice-btn")
+          .forEach((b) => b.classList.remove("active"));
+        el.classList.add("active");
+        state.package = pkg;
+        state.vehicle = "";
+        state.vehicleCost = 0;
+        loadVehicles();
+        calcTotal();
+        updateSteps();
+        markCheck("ck_pkg", true);
+      }
+
+      function selectVehicle(el, key, cost) {
+        document
+          .querySelectorAll("#vehicleGrid .choice-btn")
+          .forEach((b) => b.classList.remove("active"));
+        el.classList.add("active");
+        state.vehicle = key;
+        state.vehicleCost = cost;
+        calcTotal();
+        markCheck("ck_veh", true);
+      }
+
+      function selectHotelType(el, type) {
+        el.closest(".fgroup")
+          .querySelectorAll(".choice-btn")
+          .forEach((b) => b.classList.remove("active"));
+        el.classList.add("active");
+        state.hotelType = type;
+        renderHotels();
+        calcTotal();
+        markCheck("ck_hotel", true);
+      }
+
+      function selectRoom(el, key, multiplier) {
+        el.closest(".fgroup")
+          .querySelectorAll(".choice-btn")
+          .forEach((b) => b.classList.remove("active"));
+        el.classList.add("active");
+        state.roomType = key;
+        state.roomMultiplier = multiplier;
+        calcTotal();
+      }
+
+      function selectMeal(el, key, cost) {
+        document
+          .querySelectorAll("#mealGrid .choice-btn")
+          .forEach((b) => b.classList.remove("active"));
+        el.classList.add("active");
+        state.meal = key;
+        state.mealCostPerPerson = cost;
+        calcTotal();
+        markCheck("ck_meal", true);
+      }
+
+      function selectPay(el, method) {
+        document.querySelectorAll(".fsec .choice-btn").forEach((b) => {
+          if (
+            b.parentElement.id !== "packageGrid" &&
+            b.parentElement.id !== "mealGrid" &&
+            b.parentElement.id !== "vehicleGrid" &&
+            b.parentElement.id !== "hotelTypeGrid"
+          ) {
+            b.classList.remove("active");
+          }
+        });
+        el.classList.add("active");
+        state.pay = method;
+        markCheck("ck_pay", true);
+      }
+
+      let guideOn = false;
+      function toggleGuide() {
+        guideOn = !guideOn;
+        document.getElementById("guideSw").classList.toggle("on", guideOn);
+        state.guide = guideOn;
+        calcTotal();
+      }
+
+      function autoEndDate() {
+        const sd = document.getElementById("startDate").value;
+        if (!sd) return;
+        const days = state.numDays || state.provinceRec || 3;
+        const start = new Date(sd);
+        start.setDate(start.getDate() + days);
+        const end = start.toISOString().split("T")[0];
+        document.getElementById("endDate").value = end;
+        state.startDate = sd;
+        state.endDate = end;
+        document.getElementById("dateHint").style.display = "block";
+        document.getElementById("dateHint").textContent =
+          `📅 ${days} day trip · ${formatDate(sd)} → ${formatDate(end)}`;
+        calcTotal();
+        markCheck("ck_date", true);
+      }
+
+      function calcDays() {
+        const s = document.getElementById("startDate").value;
+        const e = document.getElementById("endDate").value;
+        if (s && e) {
+          const diff = Math.round((new Date(e) - new Date(s)) / 86400000);
+          if (diff > 0) {
+            state.numDays = diff;
+            state.startDate = s;
+            state.endDate = e;
+            document.getElementById("dateHint").style.display = "block";
+            document.getElementById("dateHint").textContent =
+              `📅 ${diff} day${diff !== 1 ? "s" : ""} · ${formatDate(s)} → ${formatDate(e)}`;
+            calcTotal();
+            markCheck("ck_date", true);
+          }
+        }
+      }
+
+      function formatDate(d) {
+        if (!d) return "";
+        const parts = d.split("-");
+        const months = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+        return `${parts[2]} ${months[parseInt(parts[1]) - 1]} ${parts[0]}`;
+      }
+
+      function calcTotal() {
+        const adults = parseInt(document.getElementById("adults").value) || 1;
+        const kids = parseInt(document.getElementById("kids").value) || 0;
+        state.adults = adults;
+        state.kids = kids;
+        const pax = adults + kids * 0.5;
+        const days = state.numDays || state.provinceRec || 3;
+
+        const hotelCost =
+          (hotelBase[state.hotelType] || 0) * state.roomMultiplier * days * pax;
+        const mealCost = state.mealCostPerPerson * days * pax;
+        const guideCost = guideOn ? guideCostPerDay * days : 0;
+        const total = Math.round(
+          state.vehicleCost + hotelCost + mealCost + guideCost,
+        );
+        const advance = Math.round(total * 0.3);
+
+        document.getElementById("tc_prov").textContent =
+          state.provinceName || "—";
+        document.getElementById("tc_pax").textContent =
+          `${adults} adult${adults !== 1 ? "s" : ""}${kids ? " + " + kids + " child" + (kids !== 1 ? "ren" : "") : ""}`;
+        document.getElementById("tc_days").textContent =
+          `${days} day${days !== 1 ? "s" : ""}`;
+        document.getElementById("tc_pkg").textContent = state.package
+          ? state.package.charAt(0).toUpperCase() + state.package.slice(1)
+          : "—";
+        document.getElementById("tc_hotel").textContent =
+          hotelCost > 0 ? "LKR " + Math.round(hotelCost).toLocaleString() : "—";
+        document.getElementById("tc_veh").textContent =
+          state.vehicleCost > 0
+            ? "LKR " + state.vehicleCost.toLocaleString()
+            : "—";
+        document.getElementById("tc_meal").textContent =
+          mealCost > 0 ? "LKR " + Math.round(mealCost).toLocaleString() : "—";
+        document.getElementById("tc_guide").textContent =
+          guideCost > 0 ? "LKR " + guideCost.toLocaleString() : "—";
+        document.getElementById("tc_amount").textContent =
+          total > 0 ? "LKR " + total.toLocaleString() : "LKR 0";
+        document.getElementById("tc_advance").textContent =
+          `Advance 30%: LKR ${advance.toLocaleString()}`;
+        document.getElementById("s4val").textContent =
+          total > 0 ? "LKR " + total.toLocaleString() : "LKR 0";
+
+        if (total > 0)
+          document.getElementById("step4card").className = "step-card done";
+        updateSteps();
+      }
+
+      function updateSteps() {
+        const adults = parseInt(document.getElementById("adults").value) || 1;
+        const kids = parseInt(document.getElementById("kids").value) || 0;
+
+        if (state.provinceName) {
+          document.getElementById("s1val").textContent = state.provinceName;
+          document.getElementById("step1card").className = "step-card done";
+        } else {
+          document.getElementById("step1card").className = "step-card active";
+        }
+
+        document.getElementById("s2val").textContent =
+          `${adults} adult${adults !== 1 ? "s" : ""}${kids ? " + " + kids + " child" + (kids !== 1 ? "ren" : "") : ""}`;
+        document.getElementById("step2card").className =
+          "step-card " + (adults >= 1 ? "done" : "active");
+
+        if (state.package) {
+          document.getElementById("s3val").textContent =
+            state.package.charAt(0).toUpperCase() + state.package.slice(1);
+          document.getElementById("step3card").className = "step-card done";
+        } else {
+          document.getElementById("step3card").className = "step-card active";
+        }
+      }
+
+      function updateSummary() {
+        const name = document.getElementById("custName").value.trim();
+        const email = document.getElementById("custEmail").value.trim();
+        markCheck("ck_name", name.length > 1);
+        markCheck("ck_email", /\S+@\S+\.\S+/.test(email));
+      }
+
+      function markCheck(id, done) {
+        const el = document.getElementById(id);
+        if (el) el.className = "sc-row" + (done ? " filled" : "");
+      }
+
+      async function confirmBooking() {
+        const name = document.getElementById("custName").value.trim();
+        const email = document.getElementById("custEmail").value.trim();
+        const phone = document.getElementById("custPhone").value.trim();
+        const adults = parseInt(document.getElementById("adults").value) || 1;
+        const kids = parseInt(document.getElementById("kids").value) || 0;
+
+        if (
+          !name ||
+          !email ||
+          !state.province ||
+          !state.package ||
+          !state.vehicle
+        ) {
+          showModal(
+            "⚠️",
+            "Missing Details",
+            "Please fill in your name, email, and select province, package, and vehicle before confirming.",
+            '<button class="mbtn mbtn-primary" onclick="closeModal()">OK, Got it</button>',
+          );
+          return;
+        }
+
+        const pax = adults + kids * 0.5;
+        const days = state.numDays || state.provinceRec || 3;
+        const hotelCost =
+          (hotelBase[state.hotelType] || 0) * state.roomMultiplier * days * pax;
+        const mealCost = state.mealCostPerPerson * days * pax;
+        const guideCost = guideOn ? guideCostPerDay * days : 0;
+        const total = Math.round(
+          state.vehicleCost + hotelCost + mealCost + guideCost,
+        );
+        const advance = Math.round(total * 0.3);
+        const bookingId = "GT-" + Date.now().toString(36).toUpperCase();
+
+        const formData = new FormData();
+        const userId = localStorage.getItem("gt_user_id") || "";
+        formData.append("user_id", userId);
+        formData.append("booking_id", bookingId);
+        formData.append("customer_name", name);
+        formData.append("customer_email", email);
+        formData.append("customer_phone", phone);
+        formData.append("province_id", state.province);
+        formData.append("package_name", state.package);
+        formData.append("vehicle_key", state.vehicle);
+        formData.append("meal_key", state.meal || "bo");
+        formData.append("room_key", state.roomType || "single");
+        formData.append("hotel_type", state.hotelType || "normal");
+        formData.append("adults", adults);
+        formData.append("children", kids);
+        formData.append("start_date", state.startDate || "");
+        formData.append("end_date", state.endDate || "");
+        formData.append("num_days", days);
+        formData.append("guide_included", guideOn ? 1 : 0);
+        formData.append("payment_method", state.pay || "cash");
+        formData.append("total_amount", total);
+        formData.append("advance_amount", advance);
+
+        try {
+          const response = await fetch("booking.php?action=saveBooking", {
+            method: "POST",
+            body: formData,
+          });
+          const result = await response.json();
+
+          if (result.success) {
+            const paymentData = {
+              booking_id: bookingId,
+              customer_name: name,
+              customer_email: email,
+              province_name: state.provinceName,
+              package_name: state.package,
+              num_days: days,
+              adults: adults,
+              children: kids,
+              total_amount: total,
+              advance_amount: advance,
+            };
+            sessionStorage.setItem("gt_payment", JSON.stringify(paymentData));
+
+            showModal(
+              "✅",
+              "Booking Confirmed!",
+              `Your booking <strong>${bookingId}</strong> has been saved successfully!<br><br>
+         Total: <strong>LKR ${total.toLocaleString()}</strong><br>
+         Advance (30%): <strong>LKR ${advance.toLocaleString()}</strong>`,
+              `<button class="mbtn mbtn-outline" onclick="closeModal()">Close</button>
+         <button class="mbtn mbtn-primary" onclick="window.location.href='payment.html'">💳 Make Payment</button>`,
+            );
+          } else {
+            showModal(
+              "❌",
+              "Error",
+              "Failed to save booking. Please try again.",
+              '<button class="mbtn mbtn-primary" onclick="closeModal()">OK</button>',
+            );
+          }
+        } catch (error) {
+          showModal(
+            "❌",
+            "Error",
+            "Could not connect to server. Please check your connection.",
+            '<button class="mbtn mbtn-primary" onclick="closeModal()">OK</button>',
+          );
+        }
+      }
+
+      function showModal(icon, title, msg, btns) {
+        document.getElementById("mIcon").textContent = icon;
+        document.getElementById("mTitle").innerHTML = title;
+        document.getElementById("mMsg").innerHTML = msg;
+        document.getElementById("mBtns").innerHTML =
+          btns ||
+          '<button class="mbtn mbtn-primary" onclick="closeModal()">OK</button>';
+        document.getElementById("overlay").classList.add("show");
+      }
+
+      function closeModal() {
+        document.getElementById("overlay").classList.remove("show");
+      }
+
+      document
+        .getElementById("overlay")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
+
+      function openMyBookings() {
+        document.getElementById("myBookingsOverlay").classList.add("show");
+        loadMyBookings();
+      }
+
+      function closeMyBookings() {
+        document.getElementById("myBookingsOverlay").classList.remove("show");
+      }
+
+      document
+        .getElementById("myBookingsOverlay")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeMyBookings();
+        });
+
+      async function loadMyBookings() {
+        const list = document.getElementById("myBookingsList");
+        list.innerHTML =
+          '<div class="dots" style="justify-content:center;padding:1rem"><span></span><span></span><span></span></div>';
+
+        const email = localStorage.getItem("gt_user") || "";
+        if (!email) {
+          list.innerHTML =
+            '<div style="text-align:center;color:var(--muted);font-size:.85rem;padding:1rem">Please log in to view bookings.</div>';
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            "booking.php?action=getMyBookings&email=" +
+              encodeURIComponent(email),
+          );
+          const bookings = await response.json();
+
+          const statusClass = {
+            pending: "status-pending",
+            confirmed: "status-confirmed",
+            cancelled: "status-cancelled",
+            completed: "status-completed",
+          };
+
+          if (!bookings.length) {
+            list.innerHTML =
+              '<div style="text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem">No bookings found.</div>';
+            return;
+          }
+
+          list.innerHTML = bookings
+            .map(function (booking) {
+              const sc = statusClass[booking.status] || "status-pending";
+              const due = parseInt(booking.due_amount) || 0;
+              const paid = parseInt(booking.paid_amount) || 0;
+
+              const payLabel =
+                due <= 0
+                  ? '<span style="display:inline-block;margin-top:5px;padding:3px 10px;border-radius:6px;background:rgba(34,197,94,0.12);color:#22c55e;border:1px solid rgba(34,197,94,0.3);font-size:.7rem;font-weight:600;">✓ Paid</span>'
+                  : '<span style="display:inline-block;margin-top:5px;padding:3px 10px;border-radius:6px;background:rgba(251,191,36,0.12);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);font-size:.7rem;font-weight:600;">⏳ Pending Payment</span>';
+
+              const makePayBtn =
+                due > 0
+                  ? "<button onclick=\"goToPayDue('" +
+                    booking.booking_id +
+                    "'," +
+                    due +
+                    ",'" +
+                    (booking.province_name || "") +
+                    '\')" style="display:inline-block;margin-top:6px;margin-left:6px;padding:4px 12px;border-radius:6px;background:rgba(45,212,184,0.15);color:#2dd4b8;border:1px solid rgba(45,212,184,0.4);font-size:.72rem;font-weight:600;cursor:pointer;">💳 Make Payment</button>'
+                  : "";
+
+              const downloadBtn =
+                booking.status === "confirmed" || booking.status === "completed"
+                  ? '<a href="download_receipt.php?booking_id=' +
+                    encodeURIComponent(booking.booking_id) +
+                    '" target="_blank" style="display:inline-block;margin-top:6px;padding:4px 12px;border-radius:6px;background:rgba(45,212,184,0.12);color:#2dd4b8;border:1px solid rgba(45,212,184,0.3);font-size:.72rem;font-weight:600;text-decoration:none;">↓ Receipt</a>'
+                  : "";
+
+              return (
+                '<div class="booking-item">' +
+                '<div class="bi-head">' +
+                '<span class="bi-id">' +
+                booking.booking_id +
+                "</span>" +
+                '<span class="bi-status ' +
+                sc +
+                '">' +
+                booking.status +
+                "</span>" +
+                "</div>" +
+                '<div class="bi-info">' +
+                (booking.province_name || "") +
+                " · " +
+                booking.package_name +
+                " · " +
+                booking.num_days +
+                " days</div>" +
+                '<div class="bi-price">Total: LKR ' +
+                parseInt(booking.total_amount).toLocaleString() +
+                "</div>" +
+                '<div style="font-size:.75rem;color:var(--muted)">Paid: LKR ' +
+                paid.toLocaleString() +
+                " · Due: LKR " +
+                due.toLocaleString() +
+                "</div>" +
+                '<div style="margin-top:4px">' +
+                payLabel +
+                makePayBtn +
+                "</div>" +
+                (downloadBtn
+                  ? '<div style="margin-top:2px">' + downloadBtn + "</div>"
+                  : "") +
+                "</div>"
+              );
+            })
+            .join("");
+        } catch (error) {
+          list.innerHTML =
+            '<div style="text-align:center;color:var(--muted);font-size:.85rem;padding:1rem">Could not load bookings.</div>';
+        }
+      }
+
+      function goToPayDue(bookingId, dueAmount, provinceName) {
+        const userEmail = localStorage.getItem("gt_user") || "";
+        const userName = localStorage.getItem("gt_username") || "";
+
+        const paymentData = {
+          booking_id: bookingId,
+          customer_name: userName,
+          customer_email: userEmail,
+          province_name: provinceName,
+          package_name: "",
+          num_days: 0,
+          adults: 1,
+          children: 0,
+          total_amount: dueAmount,
+          advance_amount: dueAmount,
+          is_due_payment: true,
+        };
+
+        sessionStorage.setItem("gt_payment", JSON.stringify(paymentData));
+        window.location.href = "payment.html";
+      }
+
+      // Set min date for start date
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("startDate").min = today;
+
+      // Initialize
+      loadInitialData();
+
+      // Event listeners
+      document
+        .getElementById("adults")
+        .addEventListener("input", () => calcTotal());
+      document
+        .getElementById("kids")
+        .addEventListener("input", () => calcTotal());
+      document
+        .getElementById("custName")
+        .addEventListener("input", updateSummary);
+      document
+        .getElementById("custEmail")
+        .addEventListener("input", updateSummary);
+      document.getElementById("endDate").addEventListener("change", calcDays);
+
+      // Get user data from localStorage and display
+      function loadUserData() {
+        const userEmail = localStorage.getItem("gt_user");
+        const userName = localStorage.getItem("gt_username");
+        const userRole = localStorage.getItem("gt_role");
+
+        if (!userEmail || userRole !== "customer") {
+          window.location.href = "Login.html";
+          return;
+        }
+
+        // Header display
+        const userNameSpan = document.getElementById("userNameDisplay");
+        const userEmailSpan = document.getElementById("userEmailDisplay");
+        if (userNameSpan)
+          userNameSpan.textContent = userName || userEmail.split("@")[0];
+        if (userEmailSpan) userEmailSpan.textContent = userEmail;
+
+        //  Form auto-fill
+        const nameInput = document.getElementById("custName");
+        const emailInput = document.getElementById("custEmail");
+        if (nameInput && userName) nameInput.value = userName; //  localStorage name
+        if (emailInput && userEmail) emailInput.value = userEmail; //  localStorage email
+
+        updateSummary();
+      }
+
+      // Logout function
+      function logout() {
+        localStorage.removeItem("gt_user");
+        localStorage.removeItem("gt_username");
+        localStorage.removeItem("gt_role");
+        window.location.href = "Homepage.html";
+      }
+
+      // Call loadUserData when page loads
+      (function () {
+        loadUserData();
+      })();
+
+      function logout() {
+        localStorage.removeItem("gt_user");
+        localStorage.removeItem("gt_username");
+        localStorage.removeItem("gt_role");
+        window.location.href = "Login.html";
+      }
+    </script>
+  </body>
+</html>

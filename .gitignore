@@ -1,0 +1,7 @@
+db_connect.php
+receipts/*
+!receipts/.gitkeep
+*.class
+~$*
+.env
+.DS_Store

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>GlobeTrek – Register</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Css/Register page Stylesheet.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo">
+          <img alt="Logo" src="places/Logo2.png" height="30px" width="50px" />
+          GlobeTrek
+        </div>
+        <div class="brand-sub">Explore Sri Lanka with us</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Create Account</div>
+        <div class="card-sub">
+          Join GlobeTrek and start planning your journey
+        </div>
+
+        <div class="alert" id="alertBox">
+          <span class="alert-icon" id="alertIcon"></span>
+          <span id="alertMsg"></span>
+        </div>
+
+        <form id="regForm" onsubmit="submitReg(event)">
+          <div class="form-row">
+            <div class="field">
+              <label>Username</label>
+              <input
+                type="text"
+                id="username"
+                placeholder="yourname"
+                maxlength="100"
+              />
+              <div class="err-msg" id="err_username">Username is required</div>
+            </div>
+            <div class="field">
+              <label>Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                placeholder="+94 7X XXX XXXX"
+                maxlength="20"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Email Address</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="you@example.com"
+              maxlength="100"
+            />
+            <div class="err-msg" id="err_email">Valid email is required</div>
+          </div>
+
+          <div class="field">
+            <label>Password</label>
+            <div class="pw-wrap">
+              <input
+                type="password"
+                id="password"
+                placeholder="••••••••"
+                maxlength="255"
+                oninput="checkStrength(this.value)"
+              />
+              <button
+                type="button"
+                class="pw-toggle"
+                onclick="togglePassword('password', 'togglePw1')"
+                id="togglePw1"
+              >
+                👁
+              </button>
+            </div>
+            <div class="pw-strength" id="pwStrength">
+              <div class="pw-bars">
+                <div class="pw-bar" id="pb1"></div>
+                <div class="pw-bar" id="pb2"></div>
+                <div class="pw-bar" id="pb3"></div>
+                <div class="pw-bar" id="pb4"></div>
+              </div>
+              <div class="pw-label" id="pwLabel">Too short</div>
+            </div>
+            <div class="err-msg" id="err_password">
+              Password must be at least 6 characters
+            </div>
+          </div>
+
+          <div class="field" style="margin-bottom: 1.2rem">
+            <label>Confirm Password</label>
+            <div class="pw-wrap">
+              <input
+                type="password"
+                id="confirm_password"
+                placeholder="••••••••"
+                maxlength="255"
+              />
+              <button
+                type="button"
+                class="pw-toggle"
+                onclick="togglePassword('confirm_password', 'togglePw2')"
+                id="togglePw2"
+              >
+                👁
+              </button>
+            </div>
+            <div class="err-msg" id="err_confirm">Passwords do not match</div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Create Account
+          </button>
+        </form>
+
+        <div class="divider"><span>Already have an account?</span></div>
+        <div class="login-link"><a href="login.html">Sign in here</a></div>
+      </div>
+    </div>
+
+    <script>
+      function checkStrength(val) {
+        const s = document.getElementById("pwStrength");
+        const bars = [
+          document.getElementById("pb1"),
+          document.getElementById("pb2"),
+          document.getElementById("pb3"),
+          document.getElementById("pb4"),
+        ];
+        const label = document.getElementById("pwLabel");
+        if (!val) {
+          s.classList.remove("show");
+          return;
+        }
+        s.classList.add("show");
+        let score = 0;
+        if (val.length >= 6) score++;
+        if (val.length >= 10) score++;
+        if (/[A-Z]/.test(val) && /[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+        const colors = ["#f87171", "#fbbf24", "#34d399", "#2dd4b8"];
+        const labels = ["Too short", "Weak", "Good", "Strong"];
+        bars.forEach(function (b, i) {
+          b.style.background =
+            i < score ? colors[score - 1] : "rgba(244,255,254,.1)";
+        });
+        label.textContent = score > 0 ? labels[score - 1] : "Too short";
+        label.style.color =
+          score > 0 ? colors[score - 1] : "rgba(244,255,254,.4)";
+      }
+
+      function togglePassword(inputId, btnId) {
+        const input = document.getElementById(inputId);
+        const btn = document.getElementById(btnId);
+        if (input.type === "password") {
+          input.type = "text";
+          btn.textContent = "🙈";
+          btn.title = "Hide password";
+        } else {
+          input.type = "password";
+          btn.textContent = "👁";
+          btn.title = "Show password";
+        }
+      }
+
+      function showAlert(type, msg) {
+        const box = document.getElementById("alertBox");
+        const icon = document.getElementById("alertIcon");
+        const txt = document.getElementById("alertMsg");
+        box.className = "alert show " + type;
+        icon.textContent = type === "success" ? "✓" : "✕";
+        txt.textContent = msg;
+      }
+
+      function clearErrors() {
+        document.querySelectorAll(".err-msg").forEach(function (e) {
+          e.classList.remove("show");
+        });
+        document.querySelectorAll(".field input").forEach(function (i) {
+          i.classList.remove("error");
+        });
+        document.getElementById("alertBox").className = "alert";
+      }
+
+      function submitReg(e) {
+        e.preventDefault();
+        clearErrors();
+
+        const username = document.getElementById("username").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const password = document.getElementById("password").value;
+        const confirm = document.getElementById("confirm_password").value;
+
+        let valid = true;
+
+        if (!username) {
+          document.getElementById("err_username").classList.add("show");
+          document.getElementById("username").classList.add("error");
+          valid = false;
+        }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          document.getElementById("err_email").classList.add("show");
+          document.getElementById("email").classList.add("error");
+          valid = false;
+        }
+        if (!password || password.length < 6) {
+          document.getElementById("err_password").classList.add("show");
+          document.getElementById("password").classList.add("error");
+          valid = false;
+        }
+        if (password !== confirm) {
+          document.getElementById("err_confirm").classList.add("show");
+          document.getElementById("confirm_password").classList.add("error");
+          valid = false;
+        }
+        if (!valid) return;
+
+        const btn = document.getElementById("submitBtn");
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span>Creating account…';
+
+        const fd = new FormData();
+        fd.append("username", username);
+        fd.append("email", email);
+        fd.append("phone", phone);
+        fd.append("password", password);
+
+        fetch("register.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.text();
+          })
+          .then(function (txt) {
+            btn.disabled = false;
+            btn.innerHTML = "Create Account";
+            if (txt.trim() === "success") {
+              showAlert("success", "Account created! Redirecting to login…");
+              setTimeout(function () {
+                window.location.href = "login.html";
+              }, 1800);
+            } else {
+              showAlert(
+                "error",
+                txt.trim() || "Registration failed. Please try again.",
+              );
+            }
+          })
+          .catch(function () {
+            btn.disabled = false;
+            btn.innerHTML = "Create Account";
+            showAlert("error", "Could not connect. Please try again.");
+          });
+      }
+    </script>
+  </body>
+</html>

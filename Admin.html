@@ -1,0 +1,2121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>GlobeTrek – Admin</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Css/Adminpage Stylesheet.css" />
+  </head>
+  <body>
+    <!-- ── Topbar ── -->
+    <div class="topbar">
+      <div style="display: flex; align-items: center; gap: 0.8rem">
+        <div class="logo">
+          <img alt="Logo" src="places/Logo2.png" height="30px" width="50px" />
+          GlobeTrek
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="user-pill">
+          <div class="u-av">👑</div>
+          <span class="u-name">Admin User</span>
+        </div>
+        <button class="tb-btn" onclick="refreshAll()">↺ Refresh</button>
+        <button class="tb-btn danger" onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <!-- ── Nav Buttons ── -->
+    <div class="nav-strip">
+      <button class="nav-btn active" onclick="showPanel('dashboard', this)">
+        <span class="nb-icon">◈</span>
+        <span class="nav-label">Dashboard</span>
+      </button>
+      <button class="nav-btn" onclick="showPanel('bookings', this)">
+        <span class="nb-icon">≡</span>
+        <span class="nav-label">Bookings</span>
+        <span class="nav-badge" id="pendingBadge">0</span>
+      </button>
+      <div class="nav-divider"></div>
+      <button class="nav-btn" onclick="showPanel('packages', this)">
+        <span class="nb-icon">⊞</span>
+        <span class="nav-label">Packages</span>
+      </button>
+      <button class="nav-btn" onclick="showPanel('hotels', this)">
+        <span class="nb-icon">⌂</span>
+        <span class="nav-label">Hotels</span>
+      </button>
+      <button class="nav-btn" onclick="showPanel('transport', this)">
+        <span class="nb-icon">⬡</span>
+        <span class="nav-label">Transport</span>
+      </button>
+      <button class="nav-btn" onclick="showPanel('inquiries', this)">
+        <span class="nb-icon">◎</span>
+        <span class="nav-label">Inquiries</span>
+      </button>
+      <div class="nav-divider"></div>
+      <span class="nav-section-label">Admin</span>
+      <button class="nav-btn" onclick="showPanel('staff', this)">
+        <span class="nb-icon">◉</span>
+        <span class="nav-label">Staff</span>
+      </button>
+      <button class="nav-btn" onclick="showPanel('reports', this)">
+        <span class="nb-icon">▦</span>
+        <span class="nav-label">Reports</span>
+      </button>
+      <button class="nav-btn" onclick="showPanel('users', this)">
+        <span class="nb-icon">⊙</span>
+        <span class="nav-label">Users</span>
+      </button>
+      <button class="nav-btn" onclick="showPanel('payments', this)">
+        <span class="nb-icon">⬡</span>
+        <span class="nav-label">Payments</span>
+      </button>
+    </div>
+
+    <!-- ── Content ── -->
+    <div class="content">
+      <!-- DASHBOARD -->
+      <div class="panel active" id="panel-dashboard">
+        <div class="stats-row">
+          <div class="stat-card teal">
+            <div class="stat-icon">≡</div>
+            <div class="stat-label">Total Bookings</div>
+            <div class="stat-val" id="st_total">—</div>
+            <div class="stat-sub">All time</div>
+          </div>
+          <div class="stat-card amber">
+            <div class="stat-icon">◷</div>
+            <div class="stat-label">Pending</div>
+            <div class="stat-val" id="st_pending">—</div>
+            <div class="stat-sub">Awaiting confirmation</div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-icon">✓</div>
+            <div class="stat-label">Confirmed</div>
+            <div class="stat-val" id="st_confirmed">—</div>
+            <div class="stat-sub">This month</div>
+          </div>
+          <div class="stat-card red">
+            <div class="stat-icon">◈</div>
+            <div class="stat-label">Revenue</div>
+            <div class="stat-val" id="st_revenue">—</div>
+            <div class="stat-sub">LKR</div>
+          </div>
+        </div>
+        <div class="dash-grid">
+          <div class="table-card">
+            <div class="table-head">
+              <div class="th-title">Recent Bookings</div>
+              <button
+                class="tb-btn"
+                onclick="
+                  showPanel(
+                    'bookings',
+                    document.querySelectorAll('.nav-btn')[1],
+                  )
+                "
+              >
+                View All
+              </button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Customer</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="recentBookingsTb">
+                <tr>
+                  <td
+                    colspan="4"
+                    style="
+                      text-align: center;
+                      color: var(--muted);
+                      padding: 1.5rem;
+                    "
+                  >
+                    <div class="dots">
+                      <span></span><span></span><span></span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-card">
+            <div class="table-head">
+              <div class="th-title">Province Popularity</div>
+            </div>
+            <div style="padding: 1.2rem" id="provStats">
+              <div class="dots"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOKINGS -->
+      <div class="panel" id="panel-bookings">
+        <div class="table-card">
+          <div class="table-head">
+            <div class="th-title">All Bookings</div>
+            <div class="th-actions">
+              <input
+                class="search-inp"
+                type="text"
+                placeholder="Search ID, name…"
+                id="bookSearch"
+                oninput="filterBookings()"
+              />
+              <select
+                class="filter-sel"
+                id="bookFilter"
+                onchange="filterBookings()"
+              >
+                <option value="">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Customer</th>
+                <th>Province</th>
+                <th>Package</th>
+                <th>Dates</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsTb">
+              <tr>
+                <td
+                  colspan="8"
+                  style="text-align: center; color: var(--muted); padding: 2rem"
+                >
+                  <div class="dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <span id="pgInfo">Loading…</span>
+            <div class="pg-btns" id="pgBtns"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOKING DETAIL -->
+      <div class="panel" id="panel-detail">
+        <button
+          class="tb-btn"
+          onclick="showPanel('bookings', null)"
+          style="margin-bottom: 1rem"
+        >
+          ← Back
+        </button>
+        <div class="detail-layout" id="detailLayout">
+          <div style="text-align: center; color: var(--muted); padding: 3rem">
+            <div class="dots"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PACKAGES -->
+      <div class="panel" id="panel-packages">
+        <div class="sec-head">
+          <div class="sec-title">Package Management</div>
+          <button class="tb-btn primary" onclick="openAddPkgModal()">
+            + Add Package
+          </button>
+        </div>
+        <div class="pkg-grid" id="pkgGrid">
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+
+      <!-- HOTELS -->
+      <div class="panel" id="panel-hotels">
+        <div class="sec-head">
+          <div class="sec-title">Hotel Coordination</div>
+        </div>
+        <div class="table-card">
+          <div class="table-head">
+            <div class="th-title">Hotels by Province</div>
+            <div class="th-actions">
+              <select
+                class="filter-sel"
+                id="hotelProvFilter"
+                onchange="filterHotels()"
+              >
+                <option value="">All Provinces</option>
+              </select>
+              <select
+                class="filter-sel"
+                id="hotelTypeFilter"
+                onchange="filterHotels()"
+              >
+                <option value="">All Types</option>
+                <option value="normal">Normal</option>
+                <option value="luxury">Luxury</option>
+              </select>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Hotel Name</th>
+                <th>District</th>
+                <th>Province</th>
+                <th>Type</th>
+                <th>Price/Night</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="hotelsTb">
+              <tr>
+                <td
+                  colspan="7"
+                  style="text-align: center; color: var(--muted); padding: 2rem"
+                >
+                  <div class="dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TRANSPORT -->
+      <div class="panel" id="panel-transport">
+        <div class="sec-head">
+          <div class="sec-title">Transport Management</div>
+        </div>
+        <div class="table-card">
+          <div class="table-head">
+            <div class="th-title">Vehicle Assignments</div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Package</th>
+                <th>Vehicle</th>
+                <th>Type</th>
+                <th>Cost</th>
+                <th>Assigned</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="transportTb">
+              <tr>
+                <td
+                  colspan="6"
+                  style="text-align: center; color: var(--muted); padding: 2rem"
+                >
+                  <div class="dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- INQUIRIES -->
+      <div class="panel" id="panel-inquiries">
+        <div class="sec-head">
+          <div class="sec-title">Customer Inquiries</div>
+        </div>
+        <div class="table-card">
+          <div class="table-head">
+            <div class="th-title">Pending Responses</div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Message</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="inquiriesTb">
+              <tr>
+                <td
+                  colspan="6"
+                  style="text-align: center; color: var(--muted); padding: 2rem"
+                >
+                  No pending inquiries
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- STAFF (Admin only) -->
+      <div class="panel" id="panel-staff">
+        <div class="sec-head">
+          <div class="sec-title">Staff Account Management</div>
+          <button class="tb-btn primary" onclick="openAddStaffModal()">
+            + Add Staff
+          </button>
+        </div>
+        <div class="staff-grid" id="staffGrid">
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+
+      <!-- REPORTS (Admin only) -->
+      <div class="panel" id="panel-reports">
+        <div class="sec-head">
+          <div class="sec-title">Sales & Reports</div>
+          <div style="display: flex; gap: 0.6rem">
+            <button class="tb-btn" onclick="exportReport()">
+              ↓ Export CSV
+            </button>
+            <select
+              class="filter-sel"
+              id="reportPeriod"
+              onchange="loadReports()"
+            >
+              <option value="month">This Month</option>
+              <option value="quarter">This Quarter</option>
+              <option value="year">This Year</option>
+              <option value="all">All Time</option>
+            </select>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-label">Total Revenue</div>
+            <div class="stat-val teal" id="rp_rev" style="color: var(--teal)">
+              —
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Bookings</div>
+            <div class="stat-val" id="rp_bk">—</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Avg Booking Value</div>
+            <div class="stat-val" id="rp_avg" style="color: var(--green)">
+              —
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Cancellation Rate</div>
+            <div class="stat-val" id="rp_cancel" style="color: var(--red)">
+              —
+            </div>
+          </div>
+        </div>
+        <div class="report-grid">
+          <div class="report-card">
+            <div class="rc-title">Revenue by Province</div>
+            <div id="provRevChart"></div>
+          </div>
+          <div class="report-card">
+            <div class="rc-title">Bookings by Package</div>
+            <div id="pkgChart"></div>
+          </div>
+        </div>
+        <div class="table-card">
+          <div class="table-head">
+            <div class="th-title">Booking Report</div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Customer</th>
+                <th>Province</th>
+                <th>Package</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="reportTb">
+              <tr>
+                <td
+                  colspan="7"
+                  style="text-align: center; color: var(--muted); padding: 2rem"
+                >
+                  <div class="dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- USERS (Admin only) -->
+      <div class="panel" id="panel-users">
+        <div class="sec-head">
+          <div class="sec-title">User Data Security</div>
+        </div>
+        <div class="table-card">
+          <div class="table-head">
+            <div class="th-title">Registered Users</div>
+            <div class="th-actions">
+              <input
+                class="search-inp"
+                type="text"
+                placeholder="Search users…"
+                id="userSearch"
+                oninput="filterUsers()"
+              />
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>Joined</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="usersTb">
+              <tr>
+                <td
+                  colspan="7"
+                  style="text-align: center; color: var(--muted); padding: 2rem"
+                >
+                  <div class="dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PAYMENTS (Admin only) -->
+      <div class="panel" id="panel-payments">
+        <div class="sec-head">
+          <div class="sec-title">Payment Overview</div>
+          <div style="display: flex; gap: 0.5rem">
+            <select
+              class="filter-sel"
+              id="payStatusFilter"
+              onchange="filterPayments()"
+            >
+              <option value="">All Status</option>
+              <option value="Paid">Paid</option>
+              <option value="Pending Payment">Pending Payment</option>
+            </select>
+          </div>
+        </div>
+        <div class="stats-row" style="margin-bottom: 1.2rem">
+          <div class="stat-card teal">
+            <div class="stat-icon">⬡</div>
+            <div class="stat-label">Total Collected</div>
+            <div class="stat-val" id="pay_total">—</div>
+            <div class="stat-sub">LKR — All advances</div>
+          </div>
+          <div class="stat-card amber">
+            <div class="stat-icon">◷</div>
+            <div class="stat-label">Balance Due</div>
+            <div class="stat-val" id="pay_balance">—</div>
+            <div class="stat-sub">LKR — Remaining</div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-icon">✓</div>
+            <div class="stat-label">Confirmed Bookings</div>
+            <div class="stat-val" id="pay_confirmed">—</div>
+            <div class="stat-sub">Paid & confirmed</div>
+          </div>
+          <div class="stat-card red">
+            <div class="stat-icon">◈</div>
+            <div class="stat-label">Pending Payments</div>
+            <div class="stat-val" id="pay_pending">—</div>
+            <div class="stat-sub">Awaiting confirmation</div>
+          </div>
+        </div>
+        <div class="table-card">
+          <div class="table-head">
+            <div class="th-title">All Payment Records</div>
+            <input
+              class="search-inp"
+              type="text"
+              placeholder="Search ID, name…"
+              id="paySearch"
+              oninput="filterPayments()"
+            />
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Customer</th>
+                <th>Payment Method</th>
+                <th>Total Amount</th>
+                <th>Advance Paid (30%)</th>
+                <th>Balance Due (70%)</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="paymentsTb">
+              <tr>
+                <td
+                  colspan="8"
+                  style="text-align: center; color: var(--muted); padding: 2rem"
+                >
+                  <div class="dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- /content -->
+
+    <div class="overlay" id="overlay" onclick="closeModal()">
+      <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-title" id="modalTitle"></div>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+    <div class="toast" id="toast"></div>
+
+    <script>
+      var allBookings = [],
+        filteredBookings = [],
+        allHotels = [],
+        allStaff = [],
+        allUsers = [],
+        pkgMap = {};
+      var currentPage = 1,
+        pageSize = 10;
+
+      window.addEventListener("DOMContentLoaded", function () {
+        loadDashboard();
+        loadBookings();
+      });
+
+      function showPanel(name, navEl) {
+        document.querySelectorAll(".panel").forEach(function (p) {
+          p.classList.remove("active");
+        });
+        var p = document.getElementById("panel-" + name);
+        if (p) p.classList.add("active");
+        document.querySelectorAll(".nav-btn").forEach(function (b) {
+          b.classList.remove("active");
+        });
+        if (navEl) navEl.classList.add("active");
+        if (name === "packages") loadPackages();
+        if (name === "hotels") loadHotels();
+        if (name === "transport") loadTransport();
+        if (name === "inquiries") loadInquiries();
+        if (name === "staff") loadStaff();
+        if (name === "reports") loadReports();
+        if (name === "users") loadUsers();
+        if (name === "payments") loadPayments();
+      }
+
+      function refreshAll() {
+        loadDashboard();
+        loadBookings();
+
+        const activePanel = document.querySelector(".panel.active");
+        if (!activePanel) return;
+
+        const panelId = activePanel.id.replace("panel-", "");
+
+        switch (panelId) {
+          case "packages":
+            loadPackages();
+            break;
+          case "hotels":
+            loadHotels();
+            break;
+          case "transport":
+            loadTransport();
+            break;
+          case "inquiries":
+            loadInquiries();
+            break;
+          case "staff":
+            loadStaff();
+            break;
+          case "reports":
+            loadReports();
+            break;
+          case "users":
+            loadUsers();
+            break;
+          case "payments":
+            loadPayments();
+            break;
+        }
+      }
+      function loadDashboard() {
+        fetch("get_dashboard_stats.php")
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (d) {
+            document.getElementById("st_total").textContent = d.total || 0;
+            document.getElementById("st_pending").textContent = d.pending || 0;
+            document.getElementById("st_confirmed").textContent =
+              d.confirmed || 0;
+            document.getElementById("st_revenue").textContent = d.revenue
+              ? formatMoney(d.revenue)
+              : "0";
+            document.getElementById("pendingBadge").textContent =
+              d.pending || 0;
+          })
+          .catch(function () {
+            ["st_total", "st_pending", "st_confirmed", "st_revenue"].forEach(
+              function (id) {
+                document.getElementById(id).textContent = "—";
+              },
+            );
+          });
+
+        fetch("get_bookings.php?limit=5")
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            var tb = document.getElementById("recentBookingsTb");
+            if (!data.length) {
+              tb.innerHTML =
+                '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:1.5rem">No bookings yet</td></tr>';
+              return;
+            }
+            tb.innerHTML = data
+              .map(function (b) {
+                return (
+                  '<tr><td style="font-family:Syne,sans-serif;font-size:.75rem;color:var(--teal)">' +
+                  b.booking_id +
+                  "</td>" +
+                  "<td>" +
+                  esc(b.customer_name) +
+                  "</td>" +
+                  '<td><span class="status-badge s-' +
+                  b.status +
+                  '">' +
+                  b.status +
+                  "</span></td>" +
+                  '<td><button class="action-btn view" onclick="viewBooking(\'' +
+                  b.booking_id +
+                  "')\">View</button></td></tr>"
+                );
+              })
+              .join("");
+          })
+          .catch(function () {
+            document.getElementById("recentBookingsTb").innerHTML =
+              '<tr><td colspan="4" style="text-align:center;color:var(--muted)">Could not load</td></tr>';
+          });
+
+        fetch("get_province_stats.php")
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            var el = document.getElementById("provStats");
+            if (!data || !data.length) {
+              el.innerHTML =
+                '<div style="color:var(--muted);font-size:.8rem">No data</div>';
+              return;
+            }
+            var max = Math.max.apply(
+              null,
+              data.map(function (d) {
+                return parseInt(d.count) || 1;
+              }),
+            );
+            el.innerHTML = data
+              .map(function (d) {
+                return (
+                  '<div class="bar-row"><div class="bar-label">' +
+                  esc(d.province_name) +
+                  "</div>" +
+                  '<div class="bar-track"><div class="bar-fill" style="width:' +
+                  Math.round((d.count / max) * 100) +
+                  '%"></div></div>' +
+                  '<div class="bar-val">' +
+                  d.count +
+                  "</div></div>"
+                );
+              })
+              .join("");
+          })
+          .catch(function () {
+            document.getElementById("provStats").innerHTML =
+              '<div style="color:var(--muted);font-size:.8rem">No data</div>';
+          });
+      }
+
+      function loadBookings() {
+        fetch("get_bookings.php")
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            allBookings = data;
+            filteredBookings = data;
+            renderBookings();
+          })
+          .catch(function () {
+            document.getElementById("bookingsTb").innerHTML =
+              '<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:2rem">Could not load bookings</td></tr>';
+          });
+      }
+
+      function filterBookings() {
+        var q = document.getElementById("bookSearch").value.toLowerCase();
+        var st = document.getElementById("bookFilter").value;
+        filteredBookings = allBookings.filter(function (b) {
+          return (
+            (!q ||
+              b.booking_id.toLowerCase().includes(q) ||
+              (b.customer_name && b.customer_name.toLowerCase().includes(q))) &&
+            (!st || b.status === st)
+          );
+        });
+        currentPage = 1;
+        renderBookings();
+      }
+
+      function renderBookings() {
+        var tb = document.getElementById("bookingsTb");
+        var start = (currentPage - 1) * pageSize,
+          end = start + pageSize;
+        var page = filteredBookings.slice(start, end);
+        if (!page.length) {
+          tb.innerHTML =
+            '<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:2rem">No bookings found</td></tr>';
+          document.getElementById("pgInfo").textContent = "No results";
+          document.getElementById("pgBtns").innerHTML = "";
+          return;
+        }
+        tb.innerHTML = page
+          .map(function (b) {
+            return (
+              "<tr>" +
+              '<td style="font-family:Syne,sans-serif;font-size:.72rem;color:var(--teal)">' +
+              esc(b.booking_id) +
+              "</td>" +
+              "<td>" +
+              esc(b.customer_name || "—") +
+              '<br><span style="font-size:.65rem;color:var(--muted)">' +
+              esc(b.customer_email || "") +
+              "</span></td>" +
+              "<td>" +
+              esc(b.province_name || b.province_id || "—") +
+              "</td>" +
+              "<td>" +
+              esc(b.package_name || "—") +
+              "</td>" +
+              '<td style="font-size:.72rem">' +
+              esc(b.start_date || "—") +
+              "<br>" +
+              esc(b.end_date || "—") +
+              "</td>" +
+              '<td style="font-family:Syne,sans-serif;font-size:.78rem;color:var(--teal)">LKR ' +
+              formatMoney(b.total_amount) +
+              "</td>" +
+              '<td><span class="status-badge s-' +
+              b.status +
+              '">' +
+              b.status +
+              "</span></td>" +
+              '<td style="display:flex;gap:.3rem;flex-wrap:wrap">' +
+              '<button class="action-btn view" onclick="viewBooking(\'' +
+              esc(b.booking_id) +
+              "')\">View</button>" +
+              (b.status === "pending"
+                ? '<button class="action-btn confirm" onclick="confirmBookingById(\'' +
+                  esc(b.booking_id) +
+                  "')\">Confirm</button>"
+                : "") +
+              (b.status === "pending"
+                ? '<button class="action-btn cancel" onclick="cancelBookingById(\'' +
+                  esc(b.booking_id) +
+                  "')\">Cancel</button>"
+                : "") +
+              "</td></tr>"
+            );
+          })
+          .join("");
+        var total = filteredBookings.length,
+          pages = Math.ceil(total / pageSize);
+        document.getElementById("pgInfo").textContent =
+          "Showing " +
+          (start + 1) +
+          "–" +
+          Math.min(end, total) +
+          " of " +
+          total;
+        var pbh = "";
+        for (var i = 1; i <= pages; i++)
+          pbh +=
+            '<button class="pg-btn' +
+            (i === currentPage ? " active" : "") +
+            '" onclick="goPage(' +
+            i +
+            ')">' +
+            i +
+            "</button>";
+        document.getElementById("pgBtns").innerHTML = pbh;
+      }
+
+      function goPage(n) {
+        currentPage = n;
+        renderBookings();
+      }
+
+      function viewBooking(bid) {
+        showPanel("detail", null);
+        var b = allBookings.find(function (x) {
+          return x.booking_id === bid;
+        });
+        if (!b) {
+          fetch("get_booking_detail.php?booking_id=" + encodeURIComponent(bid))
+            .then(function (r) {
+              return r.json();
+            })
+            .then(function (data) {
+              renderDetail(data);
+            })
+            .catch(function () {
+              document.getElementById("detailLayout").innerHTML =
+                '<div style="color:var(--muted)">Could not load booking.</div>';
+            });
+          return;
+        }
+        renderDetail(b);
+      }
+
+      function renderDetail(b) {
+        var sc = "s-" + b.status;
+        var html =
+          "<div>" +
+          '<div class="detail-card"><div class="dc-title">Booking Info</div>' +
+          row(
+            "Booking ID",
+            '<span style="font-family:Syne,sans-serif;color:var(--teal)">' +
+              esc(b.booking_id) +
+              "</span>",
+          ) +
+          row(
+            "Status",
+            '<span class="status-badge ' + sc + '">' + b.status + "</span>",
+          ) +
+          row("Booked On", esc(b.booking_date || "—")) +
+          "</div>" +
+          '<div class="detail-card"><div class="dc-title">Customer</div>' +
+          row("Name", esc(b.customer_name)) +
+          row("Email", esc(b.customer_email)) +
+          row("Phone", esc(b.customer_phone || "—")) +
+          "</div>" +
+          '<div class="detail-card"><div class="dc-title">Trip Details</div>' +
+          row("Province", esc(b.province_name || b.province_id || "—")) +
+          row("Package", esc(b.package_name || "—")) +
+          row(
+            "Dates",
+            esc(b.start_date || "—") + " → " + esc(b.end_date || "—"),
+          ) +
+          row("Duration", esc(b.num_days || "—") + " days") +
+          row(
+            "Adults / Children",
+            esc(b.adults || 1) + " / " + esc(b.children || 0),
+          ) +
+          "</div>" +
+          '<div class="detail-card"><div class="dc-title">Services</div>' +
+          row("Hotel Type", esc(b.hotel_type || "—")) +
+          row("Room Type", esc(b.room_key || "—")) +
+          row("Vehicle", esc(b.vehicle_key || "—")) +
+          row("Meal Plan", esc(b.meal_key || "—")) +
+          row("Tour Guide", b.guide_included == 1 ? "Yes" : "No") +
+          row("Payment", esc(b.payment_method || "—")) +
+          "</div>" +
+          '<div class="detail-card"><div class="dc-title">Financials</div>' +
+          row(
+            "Total Amount",
+            '<span style="font-family:Syne,sans-serif;color:var(--teal);font-size:.95rem">LKR ' +
+              formatMoney(b.total_amount) +
+              "</span>",
+          ) +
+          row("Advance (30%)", "LKR " + formatMoney(b.advance_amount)) +
+          "</div></div>";
+        html += '<div class="dc-actions">';
+        if (b.status === "pending") {
+          html +=
+            '<button class="full-btn fb-confirm" onclick="confirmBookingById(\'' +
+            esc(b.booking_id) +
+            "',true)\">✓ Confirm Booking</button>";
+          html +=
+            '<button class="full-btn fb-cancel" onclick="cancelBookingById(\'' +
+            esc(b.booking_id) +
+            "',true)\">✕ Cancel Booking</button>";
+        }
+        if (b.status === "confirmed")
+          html +=
+            '<button class="full-btn fb-receipt" onclick="openReceiptUpload(\'' +
+            esc(b.booking_id) +
+            "')\">↑ Send Receipt</button>";
+        if (b.receipt_file)
+          html +=
+            '<a class="full-btn fb-neutral" href="receipts/' +
+            esc(b.receipt_file) +
+            '" download style="text-decoration:none">↓ Download Receipt</a>';
+        html +=
+          '<button class="full-btn fb-neutral" onclick="showPanel(\'bookings\',null)">← Back</button></div>';
+        document.getElementById("detailLayout").innerHTML = html;
+      }
+
+      function row(k, v) {
+        return (
+          '<div class="dc-row"><span class="dc-key">' +
+          k +
+          '</span><span class="dc-val">' +
+          v +
+          "</span></div>"
+        );
+      }
+
+      function confirmBookingById(bid, fromDetail) {
+        openModal(
+          "Confirm Booking",
+          '<p style="font-size:.86rem;color:var(--muted);margin-bottom:1rem">Confirm booking <b style="color:var(--teal)">' +
+            bid +
+            "</b>?</p>",
+          '<button class="mbtn mbtn-primary" onclick="doUpdateStatus(\'' +
+            bid +
+            "','confirmed'," +
+            !!fromDetail +
+            ')">Confirm</button>' +
+            '<button class="mbtn mbtn-outline" onclick="closeModal()">Cancel</button>',
+        );
+      }
+
+      function cancelBookingById(bid, fromDetail) {
+        openModal(
+          "Cancel Booking",
+          '<p style="font-size:.86rem;color:var(--muted)">Cancel booking <b style="color:var(--red)">' +
+            bid +
+            "</b>?</p>",
+          '<button class="mbtn mbtn-red" onclick="doUpdateStatus(\'' +
+            bid +
+            "','cancelled'," +
+            !!fromDetail +
+            ')">Yes, Cancel</button>' +
+            '<button class="mbtn mbtn-outline" onclick="closeModal()">Go Back</button>',
+        );
+      }
+
+      function doUpdateStatus(bid, status, fromDetail) {
+        var fd = new FormData();
+        fd.append("booking_id", bid);
+        fd.append("status", status);
+        fetch("update_booking_status.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (d) {
+            closeModal();
+            showToast(
+              status === "confirmed"
+                ? "Booking confirmed!"
+                : "Booking cancelled",
+            );
+            allBookings.forEach(function (b) {
+              if (b.booking_id === bid) b.status = status;
+            });
+            filteredBookings.forEach(function (b) {
+              if (b.booking_id === bid) b.status = status;
+            });
+            if (fromDetail) {
+              var b = allBookings.find(function (x) {
+                return x.booking_id === bid;
+              });
+              if (b) renderDetail(b);
+            } else renderBookings();
+            loadDashboard();
+          })
+          .catch(function () {
+            closeModal();
+            showToast("Could not update status");
+          });
+      }
+
+      function openReceiptUpload(bid) {
+        openModal(
+          "Send Receipt – " + bid,
+          '<div class="upload-area" onclick="document.getElementById(\'receiptFile\').click()">' +
+            '<div style="font-size:1.4rem">↑</div>' +
+            '<div style="font-size:.78rem;color:var(--muted);margin-top:.2rem">Click to select PDF or image</div>' +
+            '<div style="font-size:.65rem;color:var(--muted2);margin-top:.1rem">PDF, JPG, PNG – max 5MB</div>' +
+            "</div>" +
+            '<input type="file" id="receiptFile" accept=".pdf,.jpg,.jpeg,.png" style="display:none" onchange="previewReceipt(this)"/>' +
+            '<div id="receiptPreview" style="margin-top:.6rem;font-size:.78rem;color:var(--teal)"></div>',
+          '<button class="mbtn mbtn-primary" onclick="uploadReceipt(\'' +
+            bid +
+            "')\">Upload & Save</button>" +
+            '<button class="mbtn mbtn-outline" onclick="closeModal()">Cancel</button>',
+        );
+      }
+
+      function previewReceipt(input) {
+        var f = input.files[0];
+        if (f)
+          document.getElementById("receiptPreview").textContent =
+            "Selected: " + f.name + " (" + Math.round(f.size / 1024) + " KB)";
+      }
+
+      function uploadReceipt(bid) {
+        var f = document.getElementById("receiptFile").files[0];
+        if (!f) {
+          showToast("Please select a file");
+          return;
+        }
+
+        var fd = new FormData();
+        fd.append("booking_id", bid);
+        fd.append("receipt", f);
+
+        fetch("upload_receipt.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (d) {
+            if (!d.success) {
+              showToast(d.message || "Upload failed");
+              return;
+            }
+            closeModal();
+            showToast("Receipt uploaded!");
+            loadBookings();
+            var b = allBookings.find(function (x) {
+              return x.booking_id === bid;
+            });
+            if (b && d.filename) {
+              b.receipt_file = d.filename;
+              renderDetail(b);
+            }
+          })
+          .catch(function () {
+            closeModal();
+            showToast("Upload failed");
+          });
+      }
+
+      function loadPackages() {
+        fetch("get_packages.php")
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            var g = document.getElementById("pkgGrid");
+            if (!data.length) {
+              g.innerHTML =
+                '<div style="color:var(--muted);font-size:.85rem">No packages found.</div>';
+              return;
+            }
+            pkgMap = {};
+            g.innerHTML = data
+              .map(function (p) {
+                pkgMap[p.id] = p;
+                return (
+                  '<div class="pkg-card">' +
+                  '<div class="pkg-name">' +
+                  esc(p.display_name || p.name) +
+                  "</div>" +
+                  '<div class="pkg-desc">' +
+                  esc(p.description) +
+                  "</div>" +
+                  '<div style="display:flex;gap:.4rem;margin-top:.6rem">' +
+                  '<button class="action-btn view" onclick="openEditPkgModal(' +
+                  p.id +
+                  ')">Edit</button>' +
+                  '<button class="action-btn cancel" onclick="confirmDeletePackage(' +
+                  p.id +
+                  ",'" +
+                  esc(p.display_name || p.name) +
+                  "')\">Delete</button>" +
+                  "</div>" +
+                  "</div>"
+                );
+              })
+              .join("");
+          })
+          .catch(function () {
+            document.getElementById("pkgGrid").innerHTML =
+              '<div style="color:var(--muted)">Could not load packages.</div>';
+          });
+      }
+
+      function openEditPkgModal(id) {
+        const p = pkgMap[id];
+        if (!p) {
+          showToast("Package not found");
+          return;
+        }
+        openModal(
+          "Edit Package",
+          '<label class="modal-label">Display Name</label>' +
+            '<input class="modal-input" id="ep_name" value="' +
+            esc(p.display_name) +
+            '"/>' +
+            '<label class="modal-label">Description</label>' +
+            '<textarea class="modal-input" id="ep_desc" rows="3" style="resize:vertical">' +
+            esc(p.description) +
+            "</textarea>",
+          '<button class="mbtn mbtn-primary" onclick="savePackage(' +
+            p.id +
+            ')">Save</button>' +
+            '<button class="mbtn mbtn-outline" onclick="closeModal()">Cancel</button>',
+        );
+      }
+
+      function confirmDeletePackage(id, name) {
+        openModal(
+          "Delete Package",
+          '<p style="font-size:.86rem;color:var(--muted);margin-bottom:.5rem">' +
+            'Delete <b style="color:var(--red)">' +
+            name +
+            "</b>? This cannot be undone.</p>",
+          '<button class="mbtn mbtn-red" onclick="doDeletePackage(' +
+            id +
+            ')">Yes, Delete</button>' +
+            '<button class="mbtn mbtn-outline" onclick="closeModal()">Cancel</button>',
+        );
+      }
+
+      function doDeletePackage(id) {
+        var fd = new FormData();
+        fd.append("id", id);
+        fetch("delete_package.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (d) {
+            closeModal();
+            showToast(
+              d.success ? "Package deleted" : d.message || "Could not delete",
+            );
+            if (d.success) loadPackages();
+          })
+          .catch(function () {
+            showToast("Could not delete");
+          });
+      }
+
+      function openAddPkgModal() {
+        openModal(
+          "Add Package",
+          '<label class="modal-label">Package Key</label><input class="modal-input" id="np_key" placeholder="e.g. budget"/>' +
+            '<label class="modal-label">Display Name</label><input class="modal-input" id="np_name" placeholder="e.g. Budget Package"/>' +
+            '<label class="modal-label">Description</label><textarea class="modal-input" id="np_desc" rows="3" style="resize:vertical"></textarea>',
+          '<button class="mbtn mbtn-primary" onclick="addPackage()">Add</button><button class="mbtn mbtn-outline" onclick="closeModal()">Cancel</button>',
+        );
+      }
+
+      function savePackage(id) {
+        var fd = new FormData();
+        fd.append("id", id);
+        fd.append("display_name", document.getElementById("ep_name").value);
+        fd.append("description", document.getElementById("ep_desc").value);
+        fetch("update_package.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function () {
+            closeModal();
+            showToast("Package updated");
+            loadPackages();
+          })
+          .catch(function () {
+            showToast("Could not update");
+          });
+      }
+
+      function addPackage() {
+        var fd = new FormData();
+        fd.append("name", document.getElementById("np_key").value);
+        fd.append("display_name", document.getElementById("np_name").value);
+        fd.append("description", document.getElementById("np_desc").value);
+        fetch("add_package.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function () {
+            closeModal();
+            showToast("Package added");
+            loadPackages();
+          })
+          .catch(function () {
+            showToast("Could not add");
+          });
+      }
+
+      function loadHotels() {
+        fetch("get_all_hotels.php")
+          .then((r) => r.json())
+          .then(function (data) {
+            allHotels = data;
+            var pf = document.getElementById("hotelProvFilter");
+
+            pf.innerHTML = '<option value="">All Provinces</option>';
+
+            var provs = {};
+            data.forEach(function (h) {
+              if (h.province_name && !provs[h.province_name]) {
+                provs[h.province_name] = 1;
+                var o = document.createElement("option");
+                o.value = h.province_name;
+                o.textContent = h.province_name;
+                pf.appendChild(o);
+              }
+            });
+            renderHotels(data);
+          });
+      }
+
+      function filterHotels() {
+        var pf = document.getElementById("hotelProvFilter").value,
+          tf = document.getElementById("hotelTypeFilter").value;
+        renderHotels(
+          allHotels.filter(function (h) {
+            return (
+              (!pf || h.province_name === pf) && (!tf || h.hotel_type === tf)
+            );
+          }),
+        );
+      }
+
+      function renderHotels(data) {
+        var tb = document.getElementById("hotelsTb");
+        if (!data.length) {
+          tb.innerHTML =
+            '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:1.5rem">No hotels found</td></tr>';
+          return;
+        }
+        tb.innerHTML = data
+          .map(function (h) {
+            return (
+              "<tr>" +
+              "<td>" +
+              esc(h.hotel_name) +
+              "</td><td>" +
+              esc(h.district_name) +
+              "</td><td>" +
+              esc(h.province_name) +
+              "</td>" +
+              '<td><span class="coord-badge ' +
+              (h.hotel_type === "luxury" ? "s-confirmed" : "s-pending") +
+              '">' +
+              esc(h.hotel_type) +
+              "</span></td>" +
+              '<td style="font-family:Syne,sans-serif;font-size:.78rem;color:var(--teal)">LKR ' +
+              formatMoney(h.price) +
+              "</td>" +
+              '<td><span class="coord-badge coord-ok">Active</span></td>' +
+              '<td><button class="action-btn" onclick="editHotel(' +
+              h.id +
+              ",'" +
+              esc(h.hotel_name) +
+              "'," +
+              h.price +
+              ')">Edit</button></td>' +
+              "</tr>"
+            );
+          })
+          .join("");
+      }
+
+      function editHotel(id, name, price) {
+        openModal(
+          "Edit Hotel – " + name,
+          '<label class="modal-label">Price per Night (LKR)</label><input class="modal-input" type="number" id="eh_price" value="' +
+            price +
+            '"/>',
+          '<button class="mbtn mbtn-primary" onclick="saveHotel(' +
+            id +
+            ')">Save</button><button class="mbtn mbtn-outline" onclick="closeModal()">Cancel</button>',
+        );
+      }
+
+      function saveHotel(id) {
+        var fd = new FormData();
+        fd.append("id", id);
+        fd.append("price", document.getElementById("eh_price").value);
+        fetch("update_hotel_price.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function () {
+            closeModal();
+            showToast("Hotel price updated");
+            loadHotels();
+          })
+          .catch(function () {
+            showToast("Could not update");
+          });
+      }
+
+      function loadTransport() {
+        fetch("get_vehicles.php")
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            var tb = document.getElementById("transportTb");
+            if (!data.length) {
+              tb.innerHTML =
+                '<tr><td colspan="6" style="text-align:center;color:var(--muted)">No vehicles</td></tr>';
+              return;
+            }
+            tb.innerHTML = data
+              .map(function (v) {
+                return (
+                  "<tr>" +
+                  "<td>" +
+                  esc(v.package_name) +
+                  "</td><td>" +
+                  esc(v.vehicle_label) +
+                  "</td>" +
+                  '<td><span class="coord-badge coord-ok">' +
+                  esc(v.hotel_type) +
+                  "</span></td>" +
+                  '<td style="font-family:Syne,sans-serif;color:var(--teal)">LKR ' +
+                  formatMoney(v.cost) +
+                  "</td>" +
+                  '<td><span style="color:var(--muted);font-size:.75rem">—</span></td>' +
+                  '<td><button class="action-btn" onclick="editVehicle(' +
+                  v.id +
+                  "," +
+                  v.cost +
+                  ')">Edit Cost</button></td>' +
+                  "</tr>"
+                );
+              })
+              .join("");
+          })
+          .catch(function () {
+            document.getElementById("transportTb").innerHTML =
+              '<tr><td colspan="6" style="text-align:center;color:var(--muted)">Could not load</td></tr>';
+          });
+      }
+
+      function editVehicle(id, cost) {
+        openModal(
+          "Edit Vehicle Cost",
+          '<label class="modal-label">Cost (LKR)</label><input class="modal-input" type="number" id="ev_cost" value="' +
+            cost +
+            '"/>',
+          '<button class="mbtn mbtn-primary" onclick="saveVehicle(' +
+            id +
+            ')">Save</button><button class="mbtn mbtn-outline" onclick="closeModal()">Cancel</button>',
+        );
+      }
+
+      function saveVehicle(id) {
+        const fd = new FormData();
+        fd.append("id", id);
+        fd.append("cost", document.getElementById("ev_cost").value);
+        fetch("update_vehicle_cost.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function () {
+            closeModal();
+            showToast("Vehicle cost updated");
+            loadTransport();
+          })
+          .catch(function () {
+            showToast("Could not update");
+          });
+      }
+
+      function loadInquiries() {
+        fetch("get_pending_bookings.php")
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            const tb = document.getElementById("inquiriesTb");
+            if (!data.length) {
+              tb.innerHTML =
+                '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:1.5rem">No pending inquiries</td></tr>';
+              return;
+            }
+            tb.innerHTML = data
+              .map(function (b) {
+                return (
+                  "<tr>" +
+                  '<td style="font-family:Syne,sans-serif;font-size:.72rem;color:var(--teal)">' +
+                  esc(b.booking_id) +
+                  "</td>" +
+                  "<td>" +
+                  esc(b.customer_name) +
+                  "</td><td>" +
+                  esc(b.customer_email) +
+                  "</td><td>" +
+                  esc(b.customer_phone || "—") +
+                  "</td>" +
+                  '<td style="font-size:.72rem;color:var(--muted)">' +
+                  esc(b.province_name || "") +
+                  "<br>" +
+                  esc(b.package_name || "") +
+                  "</td>" +
+                  '<td style="display:flex;gap:.3rem">' +
+                  '<button class="action-btn confirm" onclick="confirmBookingById(\'' +
+                  esc(b.booking_id) +
+                  "')\">Confirm</button>" +
+                  '<button class="action-btn cancel" onclick="cancelBookingById(\'' +
+                  esc(b.booking_id) +
+                  "')\">Cancel</button>" +
+                  "</td></tr>"
+                );
+              })
+              .join("");
+          })
+          .catch(function () {
+            document.getElementById("inquiriesTb").innerHTML =
+              '<tr><td colspan="6" style="text-align:center;color:var(--muted)">Could not load</td></tr>';
+          });
+      }
+
+      /* ── Staff ── */
+      function loadStaff() {
+        fetch("get_staff.php")
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            allStaff = data;
+            const g = document.getElementById("staffGrid");
+            if (!data.length) {
+              g.innerHTML =
+                '<div style="color:var(--muted);font-size:.85rem;padding:1rem">No staff accounts.</div>';
+              return;
+            }
+            const colors = [
+              "var(--teal)",
+              "var(--blue)",
+              "var(--amber)",
+              "var(--green)",
+              "var(--red)",
+            ];
+            g.innerHTML = data
+              .map(function (s, i) {
+                const rc =
+                  s.role === "admin"
+                    ? "role-admin"
+                    : s.role === "staff"
+                      ? "role-staff"
+                      : "role-customer";
+                const col = colors[i % colors.length];
+                return (
+                  '<div class="staff-card">' +
+                  '<div class="staff-av" style="background:rgba(255,255,255,.05);border-color:' +
+                  col +
+                  ";color:" +
+                  col +
+                  '">' +
+                  esc(s.username.charAt(0).toUpperCase()) +
+                  "</div>" +
+                  '<div class="staff-name">' +
+                  esc(s.username) +
+                  "</div>" +
+                  '<div class="staff-role-tag ' +
+                  rc +
+                  '">' +
+                  esc(s.role) +
+                  "</div>" +
+                  '<div class="staff-email">' +
+                  esc(s.email) +
+                  "</div>" +
+                  '<div class="staff-actions">' +
+                  '<button class="action-btn" onclick="editStaffRole(' +
+                  s.id +
+                  ",'" +
+                  esc(s.username) +
+                  "','" +
+                  esc(s.role) +
+                  "')\">Edit Role</button>" +
+                  '<button class="action-btn cancel" onclick="deleteStaff(' +
+                  s.id +
+                  ",'" +
+                  esc(s.username) +
+                  "')\">Delete</button>" +
+                  "</div>" +
+                  "</div>"
+                );
+              })
+              .join("");
+          })
+          .catch(function () {
+            document.getElementById("staffGrid").innerHTML =
+              '<div style="color:var(--muted)">Could not load staff.</div>';
+          });
+      }
+
+      function openAddStaffModal() {
+        openModal(
+          "Add Staff Account",
+          '<div class="form-row-modal" style="margin-bottom:.65rem">' +
+            '<div><label class="modal-label">Username</label><input class="modal-input" id="ns_user" placeholder="Username" style="margin-bottom:0"/></div>' +
+            '<div><label class="modal-label">Role</label><select class="modal-select" id="ns_role" style="margin-bottom:0"><option value="staff">Staff</option><option value="admin">Admin</option></select></div>' +
+            "</div>" +
+            '<label class="modal-label">Email</label><input class="modal-input" type="email" id="ns_email" placeholder="email@globetrek.lk"/>' +
+            '<label class="modal-label">Phone</label><input class="modal-input" type="tel" id="ns_phone" placeholder="+94…"/>' +
+            '<label class="modal-label">Password</label><input class="modal-input" type="password" id="ns_pass" placeholder="••••••••"/>',
+          '<button class="mbtn mbtn-primary" onclick="addStaff()">Create Account</button>' +
+            '<button class="mbtn mbtn-outline" onclick="closeModal()">Cancel</button>',
+        );
+      }
+
+      function addStaff() {
+        const fd = new FormData();
+        fd.append("username", document.getElementById("ns_user").value);
+        fd.append("email", document.getElementById("ns_email").value);
+        fd.append("phone", document.getElementById("ns_phone").value);
+        fd.append("password", document.getElementById("ns_pass").value);
+        fd.append("role", document.getElementById("ns_role").value);
+        fetch("add_staff.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function () {
+            closeModal();
+            showToast("Staff account created");
+            loadStaff();
+          })
+          .catch(function () {
+            showToast("Could not create account");
+          });
+      }
+
+      function editStaffRole(id, name, currentRole) {
+        openModal(
+          "Edit Role – " + name,
+          '<label class="modal-label">Role</label>' +
+            '<select class="modal-select" id="er_role">' +
+            '<option value="staff"' +
+            (currentRole === "staff" ? " selected" : "") +
+            ">Staff</option>" +
+            '<option value="admin"' +
+            (currentRole === "admin" ? " selected" : "") +
+            ">Admin</option>" +
+            '<option value="customer"' +
+            (currentRole === "customer" ? " selected" : "") +
+            ">Customer</option>" +
+            "</select>",
+          '<button class="mbtn mbtn-primary" onclick="saveStaffRole(' +
+            id +
+            ')">Save</button><button class="mbtn mbtn-outline" onclick="closeModal()">Cancel</button>',
+        );
+      }
+
+      function saveStaffRole(id) {
+        const fd = new FormData();
+        fd.append("id", id);
+        fd.append("role", document.getElementById("er_role").value);
+        fetch("update_staff_role.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function () {
+            closeModal();
+            showToast("Role updated");
+            loadStaff();
+          })
+          .catch(function () {
+            showToast("Could not update");
+          });
+      }
+
+      function deleteStaff(id, name) {
+        openModal(
+          "Delete Staff Account",
+          '<p style="font-size:.86rem;color:var(--muted)">Delete account for <b style="color:var(--red)">' +
+            name +
+            "</b>? This cannot be undone.</p>",
+          '<button class="mbtn mbtn-red" onclick="doDeleteStaff(' +
+            id +
+            ')">Delete</button>' +
+            '<button class="mbtn mbtn-outline" onclick="closeModal()">Cancel</button>',
+        );
+      }
+
+      function doDeleteStaff(id) {
+        const fd = new FormData();
+        fd.append("id", id);
+        fetch("delete_staff.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function () {
+            closeModal();
+            showToast("Account deleted");
+            loadStaff();
+          })
+          .catch(function () {
+            showToast("Could not delete");
+          });
+      }
+
+      /* ── Reports ── */
+      function loadReports() {
+        const period = document.getElementById("reportPeriod").value;
+        fetch("get_reports.php?period=" + period)
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (d) {
+            document.getElementById("rp_rev").textContent = d.total_revenue
+              ? "LKR " + formatMoney(d.total_revenue)
+              : "—";
+            document.getElementById("rp_bk").textContent =
+              d.total_bookings || "—";
+            document.getElementById("rp_avg").textContent = d.avg_value
+              ? "LKR " + formatMoney(d.avg_value)
+              : "—";
+            document.getElementById("rp_cancel").textContent = d.cancel_rate
+              ? d.cancel_rate + "%"
+              : "—";
+            if (d.by_province && d.by_province.length) {
+              const max = Math.max.apply(
+                null,
+                d.by_province.map(function (x) {
+                  return parseInt(x.revenue) || 1;
+                }),
+              );
+              document.getElementById("provRevChart").innerHTML = d.by_province
+                .map(function (x) {
+                  return (
+                    '<div class="bar-row"><div class="bar-label">' +
+                    esc(x.province_name) +
+                    "</div>" +
+                    '<div class="bar-track"><div class="bar-fill" style="width:' +
+                    Math.round((x.revenue / max) * 100) +
+                    '%"></div></div>' +
+                    '<div class="bar-val">' +
+                    formatMoney(x.revenue) +
+                    "</div></div>"
+                  );
+                })
+                .join("");
+            }
+            if (d.by_package && d.by_package.length) {
+              const max2 = Math.max.apply(
+                null,
+                d.by_package.map(function (x) {
+                  return parseInt(x.count) || 1;
+                }),
+              );
+              document.getElementById("pkgChart").innerHTML = d.by_package
+                .map(function (x) {
+                  return (
+                    '<div class="bar-row"><div class="bar-label">' +
+                    esc(x.package_name) +
+                    "</div>" +
+                    '<div class="bar-track"><div class="bar-fill" style="background:var(--amber);width:' +
+                    Math.round((x.count / max2) * 100) +
+                    '%"></div></div>' +
+                    '<div class="bar-val">' +
+                    x.count +
+                    " bk</div></div>"
+                  );
+                })
+                .join("");
+            }
+            if (d.bookings && d.bookings.length) {
+              document.getElementById("reportTb").innerHTML = d.bookings
+                .map(function (b) {
+                  return (
+                    "<tr>" +
+                    '<td style="font-family:Syne,sans-serif;font-size:.72rem;color:var(--teal)">' +
+                    esc(b.booking_id) +
+                    "</td>" +
+                    "<td>" +
+                    esc(b.customer_name) +
+                    "</td><td>" +
+                    esc(b.province_name || "—") +
+                    "</td><td>" +
+                    esc(b.package_name || "—") +
+                    "</td>" +
+                    '<td style="color:var(--teal);font-family:Syne,sans-serif;font-size:.78rem">LKR ' +
+                    formatMoney(b.total_amount) +
+                    "</td>" +
+                    '<td><span class="status-badge s-' +
+                    b.status +
+                    '">' +
+                    b.status +
+                    "</span></td>" +
+                    '<td style="font-size:.7rem;color:var(--muted)">' +
+                    esc(b.booking_date || "—") +
+                    "</td>" +
+                    "</tr>"
+                  );
+                })
+                .join("");
+            }
+          })
+          .catch(function () {
+            console.log("Reports not available");
+          });
+      }
+
+      function exportReport() {
+        window.location.href =
+          "export_report.php?period=" +
+          document.getElementById("reportPeriod").value;
+      }
+
+      /* ── Users ── */
+      function loadUsers() {
+        fetch("get_users.php")
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            allUsers = data;
+            renderUsers(data);
+          })
+          .catch(function () {
+            document.getElementById("usersTb").innerHTML =
+              '<tr><td colspan="7" style="text-align:center;color:var(--muted)">Could not load</td></tr>';
+          });
+      }
+
+      function filterUsers() {
+        const q = document.getElementById("userSearch").value.toLowerCase();
+        renderUsers(
+          allUsers.filter(function (u) {
+            return (
+              !q ||
+              (u.username && u.username.toLowerCase().includes(q)) ||
+              (u.email && u.email.toLowerCase().includes(q))
+            );
+          }),
+        );
+      }
+
+      function renderUsers(data) {
+        const tb = document.getElementById("usersTb");
+        if (!data.length) {
+          tb.innerHTML =
+            '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:1.5rem">No users found</td></tr>';
+          return;
+        }
+        tb.innerHTML = data
+          .map(function (u) {
+            const rc =
+              u.role === "admin"
+                ? "role-admin"
+                : u.role === "staff"
+                  ? "role-staff"
+                  : "role-customer";
+            return (
+              "<tr>" +
+              '<td style="color:var(--muted);font-size:.72rem">#' +
+              u.id +
+              "</td>" +
+              "<td>" +
+              esc(u.username) +
+              "</td><td>" +
+              esc(u.email) +
+              "</td><td>" +
+              esc(u.phone || "—") +
+              "</td>" +
+              '<td><span class="staff-role-tag ' +
+              rc +
+              '">' +
+              esc(u.role) +
+              "</span></td>" +
+              '<td style="font-size:.7rem;color:var(--muted)">' +
+              esc(u.created_at || "—") +
+              "</td>" +
+              '<td><button class="action-btn view" onclick="viewUserBookings(' +
+              u.id +
+              ",'" +
+              esc(u.username) +
+              "')\">Bookings</button></td>" +
+              "</tr>"
+            );
+          })
+          .join("");
+      }
+
+      function viewUserBookings(userId, name) {
+        openModal(
+          name + " — Bookings",
+          '<div id="ubLoading" style="text-align:center;padding:1.5rem">' +
+            '<div class="dots"><span></span><span></span><span></span></div>' +
+            "</div>" +
+            '<div id="ubList"></div>',
+          '<button class="mbtn mbtn-outline" onclick="closeModal()">Close</button>',
+        );
+
+        fetch("get_user_bookings.php?user_id=" + userId)
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            document.getElementById("ubLoading").style.display = "none";
+
+            if (!Array.isArray(data) || !data.length) {
+              document.getElementById("ubList").innerHTML =
+                '<p style="color:var(--muted);font-size:.82rem;text-align:center;padding:1.2rem 0">' +
+                "No bookings found</p>";
+              return;
+            }
+
+            let html = "";
+            data.forEach(function (b) {
+              html +=
+                '<div style="display:flex;align-items:center;justify-content:space-between;' +
+                'padding:.7rem 0;border-bottom:1px solid rgba(244,255,254,.06)">' +
+                "<div>" +
+                '<div style="font-family:Syne,sans-serif;color:var(--teal);font-size:.72rem">' +
+                esc(b.booking_id) +
+                "</div>" +
+                '<div style="font-size:.8rem;color:var(--text);margin-top:.1rem;font-weight:500">' +
+                esc(b.customer_name) +
+                "</div>" +
+                '<div style="font-size:.72rem;color:var(--muted);margin-top:.05rem">' +
+                esc(b.province_name || "—") +
+                "</div>" +
+                "</div>" +
+                '<div style="text-align:right">' +
+                '<div style="font-family:Syne,sans-serif;color:var(--teal);font-size:.88rem;font-weight:700">' +
+                "LKR " +
+                formatMoney(b.total_amount) +
+                "</div>" +
+                '<div style="margin-top:.25rem">' +
+                '<span class="status-badge s-' +
+                b.status +
+                '">' +
+                b.status +
+                "</span>" +
+                "</div>" +
+                "</div>" +
+                "</div>";
+            });
+
+            document.getElementById("ubList").innerHTML =
+              '<div style="padding:0 .2rem">' + html + "</div>";
+          })
+          .catch(function () {
+            document.getElementById("ubLoading").style.display = "none";
+            document.getElementById("ubList").innerHTML =
+              '<p style="color:var(--red);font-size:.82rem;text-align:center">Could not load bookings</p>';
+          });
+      }
+
+      function confirmDeletePackage(id, name) {
+        openModal(
+          "Delete Package",
+          '<p style="font-size:.86rem;color:var(--muted);margin-bottom:.5rem">' +
+            'Delete <b style="color:var(--red)">' +
+            name +
+            "</b>? This cannot be undone.</p>",
+          '<button class="mbtn mbtn-red" onclick="doDeletePackage(' +
+            id +
+            ')">Yes, Delete</button>' +
+            '<button class="mbtn mbtn-outline" onclick="closeModal()">Cancel</button>',
+        );
+      }
+
+      function doDeletePackage(id) {
+        const fd = new FormData();
+        fd.append("id", id);
+        fetch("delete_package.php", { method: "POST", body: fd })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (d) {
+            closeModal();
+            showToast(
+              d.success ? "Package deleted" : d.message || "Could not delete",
+            );
+            if (d.success) loadPackages();
+          })
+          .catch(function () {
+            showToast("Could not delete");
+          });
+      }
+
+      /* ── Payments ── */
+      var allPayments = [],
+        filteredPayments = [];
+
+      function loadPayments() {
+        fetch("get_payments.php")
+          .then((r) => r.json())
+          .then(function (data) {
+            allPayments = data;
+            filteredPayments = data;
+            renderPaymentStats(data);
+            renderPayments(data);
+          })
+          .catch(function () {
+            document.getElementById("paymentsTb").innerHTML =
+              '<tr><td colspan="8" style="text-align:center;color:var(--muted)">Could not load payments</td></tr>';
+          });
+      }
+
+      function renderPaymentStats(data) {
+        var totalAmount = 0,
+          totalAdvance = 0,
+          totalDue = 0,
+          paid = 0,
+          pending = 0;
+        data.forEach(function (b) {
+          totalAmount += b.total_amount || 0;
+          totalAdvance += b.advance_paid || 0;
+          totalDue += b.due_amount || 0;
+          if (b.payment_status === "Paid") paid++;
+          if (b.payment_status === "Pending Payment") pending++;
+        });
+        document.getElementById("pay_total").textContent =
+          formatMoney(totalAdvance);
+        document.getElementById("pay_balance").textContent =
+          formatMoney(totalDue);
+        document.getElementById("pay_confirmed").textContent = paid;
+        document.getElementById("pay_pending").textContent = pending;
+      }
+
+      function renderPayments(data) {
+        var tb = document.getElementById("paymentsTb");
+        if (!data.length) {
+          tb.innerHTML =
+            '<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:2rem">No records found</td></tr>';
+          return;
+        }
+        tb.innerHTML = data
+          .map(function (b) {
+            var psClass =
+              b.payment_status === "Paid" ? "s-confirmed" : "s-pending";
+            return (
+              "<tr>" +
+              '<td style="font-family:Syne,sans-serif;font-size:.72rem;color:var(--teal)">' +
+              esc(b.booking_id) +
+              "</td>" +
+              "<td>" +
+              esc(b.customer_name || "—") +
+              '<br><span style="font-size:.65rem;color:var(--muted)">' +
+              esc(b.customer_email || "") +
+              "</span></td>" +
+              "<td><span class='coord-badge coord-ok'>" +
+              esc(b.payment_method || "—") +
+              "</span></td>" +
+              '<td style="font-family:Syne,sans-serif;font-size:.8rem;font-weight:700">LKR ' +
+              formatMoney(b.total_amount) +
+              "</td>" +
+              '<td style="font-family:Syne,sans-serif;font-size:.8rem;color:var(--green)">LKR ' +
+              formatMoney(b.advance_paid) +
+              "</td>" +
+              '<td style="font-family:Syne,sans-serif;font-size:.8rem;color:var(--amber)">LKR ' +
+              formatMoney(b.due_amount) +
+              "</td>" +
+              '<td><span class="status-badge ' +
+              psClass +
+              '">' +
+              esc(b.payment_status) +
+              "</span></td>" +
+              '<td><button class="action-btn view" onclick="viewBooking(\'' +
+              esc(b.booking_id) +
+              "')\">View</button></td>" +
+              "</tr>"
+            );
+          })
+          .join("");
+      }
+
+      function filterPayments() {
+        var q = document.getElementById("paySearch").value.toLowerCase();
+        var st = document.getElementById("payStatusFilter").value;
+        filteredPayments = allPayments.filter(function (b) {
+          var matchQ =
+            !q ||
+            b.booking_id.toLowerCase().includes(q) ||
+            (b.customer_name && b.customer_name.toLowerCase().includes(q));
+          var matchSt = !st || b.payment_status === st;
+          return matchQ && matchSt;
+        });
+        renderPaymentStats(filteredPayments);
+        renderPayments(filteredPayments);
+      }
+
+      function downloadReceipt(bid) {
+        window.open(
+          "get_receipt.php?booking_id=" + encodeURIComponent(bid),
+          "_blank",
+        );
+      }
+
+      /* ── Helpers ── */
+      function formatMoney(n) {
+        return (parseInt(n) || 0).toLocaleString();
+      }
+      function esc(str) {
+        if (!str) return "";
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+      function openModal(title, body, btns) {
+        document.getElementById("modalTitle").textContent = title;
+        document.getElementById("modalBody").innerHTML =
+          body + (btns ? '<div class="modal-btns">' + btns + "</div>" : "");
+        document.getElementById("overlay").classList.add("show");
+      }
+      function closeModal() {
+        document.getElementById("overlay").classList.remove("show");
+      }
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(function () {
+          t.classList.remove("show");
+        }, 3000);
+      }
+      function logout() {
+        window.location.href = "Login.html";
+      }
+    </script>
+  </body>
+</html>

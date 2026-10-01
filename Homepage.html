@@ -1,0 +1,3190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>GlobeTrek Adventures</title>
+    <link rel="icon" type="image/x-icon" href="Icon.png" />
+    <link rel="stylesheet" href="Css/Stylesheet.css">
+</head>
+<body>
+  
+    <header>
+        <div class="container">
+
+            <input type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" class="hamburger">
+                &#9776; 
+                <span>Menu</span>
+            </label>        
+
+            <div class="logo">
+                <img alt="Logo" src="places/Logo2.png" height="30px" width="50px"/>
+                GlobeTrek 
+            </div>
+
+            <nav>
+                <ul class="nav-links">
+                    </li><a href="#" class="href">Home</a></li>
+                    </li><a href="#Destinations" class="href">Destinations</a></li>
+                    </li><a href="#hotelsSection" class="href">Hotels</a></li>
+                    </li><a href="#packagesSection" class="href">Packages</a></li>
+                    </li><a href="#footer" class="href">About</a></li>
+                </ul>
+            </nav>
+
+            <input type="checkbox" id="acc-toggle"/>
+
+<label for="acc-toggle" class="g-start">Get Started</label>
+
+<div class="acc-btn">   <!-- ONE container -->
+
+    <!-- Logged Out -->
+    <div id="loggedOutState">
+        <a href="login.html" class="log-btn">Sign in</a>
+        <span class="material-icons acc-icons">person</span>
+        <a href="register.html" class="reg-btn">Sign up</a>
+    </div>
+
+    <!-- Logged In -->
+    <div id="loggedInState">
+      <span class="material-icons acc-icons">account_circle</span>
+        <span class="user-name" id="userNameDisplay"></span>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+</div>
+
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero" id="hero">
+        
+            <div class="hero-badge">
+                 NEGOMBO'S #1 TRAVEL COMPANY
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-title">
+                        <span class="line1">Explore</span> <br>
+                        <div class="row">
+                            <span class="line2">Island</span> <br>
+                            <span class="line3">Paradise</span> <br>
+                        </div>
+                        <span class="line4">
+                            THE PEARL OF THE INDIAN OCEAN AWAITS — BEGIN HERE
+                        </span>
+                    </div>
+                    <div class="hero-subtitle">
+                        Curated adventures across Sri Lanka's most remarkable destinations.<br> Every experience, perfectly planned.
+                    </div>
+                </div>
+           
+                <div class="hero-pic">
+                    <div class="img1">
+                        <img src="places/sigiriya.jpeg">
+                    </div>
+                    <div class="img2">
+                        <video autoplay muted loop class="hero-video">
+                            <source src="places/hero.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="img3">
+                        <img src="places/tealeaf.jpeg">
+                    </div>
+                    <div class="img4">
+                        <img src="places/tower.jpeg">
+                    </div>
+                </div>
+            </div>
+         
+            <div class="search">
+                <span class="material-icons search-icons">search</span>
+                <input type="text" id="hero-search" placeholder="Where do you dream of going?">
+                <button type="submit"><b>Explore</b></button> 
+            </div>
+         
+            <div class="stats-row">
+                <div class="stat">
+                    <span class="stat-num">200+</span>
+                    <span class="stat-label">Destinations</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">5K+</span>
+                    <span class="stat-label">Happy Travelers</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">12+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">4.9★</span>
+                    <span class="stat-label">Avg Rating</span>
+                </div>
+            </div>
+        </section>
+
+    
+        <section class="Destinations" id="Destinations">
+            <div class="section-divider"></div>
+            <div class="dest-header">
+                <div>
+                    <div class="dest-eyebrow">Explore Sri Lanka</div>
+                    <h2 class="dest-title">Popular Destinations</h2>
+                    <p class="dest-sub">Discover Sri Lanka's nine provinces — from misty highlands to golden coastlines.</p>
+                </div>
+
+                <button class="btn-viewall" id="toggleBtn" onclick="toggleView()">
+                    <span class="material-icons mat-icon">arrow_forward</span>
+                </button>
+            </div>
+  
+            <div id="provinceView">
+                <div class="province-grid">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="places/western province sri lanka.webp" alt="Western">
+                        </div>
+                        <div class="card-content">
+                            <span class="material-icons icon">place</span>
+                            <h2>Western Province</h2>
+                            <p>Capital region with Colombo city & urban life.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="places/Central.jpeg" alt="Central">
+                        </div>
+                        <div class="card-content">
+                            <span class="material-icons icon">place</span>
+                            <h2>Central Province</h2>
+                            <p>Kandy, hills & cultural heritage.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="places/Sabragamuwa.jpeg" alt="Sabaragamuwa">
+                        </div>
+                        <div class="card-content">
+                            <span class="material-icons icon">place</span>
+                            <h2>Sabaragamuwa</h2>
+                            <p>Rainforests & gem mining.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="places/Nothern.jpeg" alt="Northern">
+                        </div>
+                        <div class="card-content">
+                            <span class="material-icons icon">place</span>
+                            <h2>Northern Province</h2>
+                            <p>Rich culture, history & Jaffna.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="province-row2">
+                    <div class="card-horiz">
+                        <div class="card-img-h">
+                            <img src="places/Eastern province.jpg" alt="Eastern">
+                        </div>
+                        <div class="card-content-h">
+                            <span class="material-icons icon">place</span>
+                            <h2>Eastern Province</h2>
+                            <p>Beautiful beaches & lagoons.</p>
+                        </div>
+                    </div>
+                    <div class="card-horiz">
+                        <div class="card-img-h">
+                            <img src="places/North western province.jpg" alt="North Western">
+                        </div>
+                        <div class="card-content-h">
+                            <span class="material-icons icon">place</span>
+                            <h2>North Western</h2>
+                            <p>Fishing villages & Wilpattu.</p>
+                        </div>
+                    </div>
+                    <div class="card-horiz">
+                        <div class="card-img-h">
+                            <img src="places/North central.jpg" alt="North Central">
+                        </div>
+                        <div class="card-content-h">
+                            <span class="material-icons icon">place</span>
+                            <h2>North Central</h2>
+                            <p>Ancient cities & reservoirs.</p>
+                        </div>
+                    </div>
+                    <div class="card-horiz">
+                        <div class="card-img-h">
+                            <img src="places/Uva province.jpg" alt="Uva">
+                        </div>
+                        <div class="card-content-h">
+                            <span class="material-icons icon">place</span>
+                            <h2>Uva Province</h2>
+                            <p>Ella, Nine Arches & mountains.</p>
+                        </div>
+                    </div>
+                    <div class="card-horiz">
+                         <div class="card-img-h">
+                            <img src="places/Southern.jpg" alt="Southern">
+                        </div>
+                        <div class="card-content-h">
+                            <span class="material-icons icon">place</span>
+                            <h2>Southern Province</h2>
+                            <p>Beaches, Galle fort & tourism.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+  <div id="districtsView" style="display:none;">
+
+    <!-- ═══════════════════════════
+         1. WESTERN PROVINCE
+    ═══════════════════════════ -->
+    <div class="province-block">
+      <div class="province-heading">
+        <span class="province-emoji">🏙️</span>
+        <span class="province-name-text">Western Province</span>
+        <span class="province-badge">3 Districts</span>
+      </div>
+
+      <!-- Colombo -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Colombo</h3>
+          <span class="dist-count">5 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/galle face green colombo pot.jpg" alt="Galle Face Green"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Galle Face Green</div>
+              <div class="place-desc">Iconic seafront promenade in the heart of Colombo city.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Gangaramaya Temple pot.jpg" alt="Gangaramaya Temple"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Gangaramaya Temple</div>
+              <div class="place-desc">Famous Buddhist temple with eclectic architecture.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/tower.jpeg" alt="Lotus Tower"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Colombo Lotus Tower</div>
+              <div class="place-desc">South Asia's tallest tower with panoramic views.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Viharamahadevi.jpeg" alt="Viharamahadevi Park"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Viharamahadevi Park</div>
+              <div class="place-desc">Colombo's oldest and largest public park.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Pettah.jpeg" alt="Pettah Market"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Pettah Market</div>
+              <div class="place-desc">Vibrant bazaar full of local trade and culture.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gampaha -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Gampaha</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Muthurajawela Wetlands.jpg" alt="Muthurajawela"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Muthurajawela Wetlands</div>
+              <div class="place-desc">Rich mangrove ecosystem and scenic boat tours.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Henarathgoda Botanical Garden Gampaha.jpg" alt="Henarathgoda"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Henarathgoda Botanical Garden</div>
+              <div class="place-desc">Second oldest botanical garden in Sri Lanka.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/negombo.jpg" alt="Negombo Fish Market"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Negombo Fish Market</div>
+              <div class="place-desc">Lively early morning seafood market.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Attanagalla Raja Maha Viharaya gampaha.jpg" alt="Attanagalla Devalaya"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Attanagalla Devalaya</div>
+              <div class="place-desc">Ancient temple dedicated to Goddess Pattini.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kalutara -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Kalutara</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Kalutara Bodhiya kalutara.jpg" alt="Kalutara Bodhiya"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Kalutara Bodhiya</div>
+              <div class="place-desc">Sacred Bo tree and iconic white dagoba by the river.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Richmond castle kalutara.jpg" alt="Richmond Castle"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Richmond Castle</div>
+              <div class="place-desc">Dutch colonial mansion amidst rubber estates.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Bentota Beach kalutara.jpg" alt="Bentota Beach"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Bentota Beach</div>
+              <div class="place-desc">Pristine golden beach perfect for water sports.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Kalu Ganga River Safari kalutara.jpg" alt="Kalu Ganga Safari"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Kalu Ganga Safari</div>
+              <div class="place-desc">River safari through lush mangroves and wildlife.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Western Province end -->
+
+    <!-- ═══════════════════════════
+         2. CENTRAL PROVINCE
+    ═══════════════════════════ -->
+    <div class="province-block">
+      <div class="province-heading">
+        <span class="province-emoji">⛰️</span>
+        <span class="province-name-text">Central Province</span>
+        <span class="province-badge">3 Districts</span>
+      </div>
+
+      <!-- Kandy -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Kandy</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Temple of the Tooth (Sri Dalada Maligawa) kandy.jpg" alt="Temple of the Tooth"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Temple of the Tooth</div>
+              <div class="place-desc">UNESCO Heritage Site — sacred relic of the Buddha.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Peradeniya Botanical Garden kandy.jpg" alt="Peradeniya Botanical Garden"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Peradeniya Botanical Garden</div>
+              <div class="place-desc">120-acre garden with rare tropical plants.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/kandy-lake.jpg" alt="Kandy Lake"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Kandy Lake</div>
+              <div class="place-desc">Scenic artificial lake in the heart of the city.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Ambuluwawa Tower kandy.jpg" alt="Ambuluwawa Tower"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Ambuluwawa Tower</div>
+              <div class="place-desc">Multi-religious tower with spiral staircase and views.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Matale -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Matale</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Aluvihare Rock Temple matale.jpg" alt="Aluvihare Rock Temple"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Aluvihare Rock Temple</div>
+              <div class="place-desc">Ancient cave temple with palm-leaf manuscripts.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Riverston Matale.jpg" alt="Riverston Peak"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Riverston Peak</div>
+              <div class="place-desc">Stunning hilltop viewpoint over misty valleys.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Sembuwatta Lake matale.jpg" alt="Sembuwatta Lake"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Sembuwatta Lake</div>
+              <div class="place-desc">Picturesque lake surrounded by pine forests.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Knuckles Mountain Range.jpg" alt="Knuckles Mountain Range"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Knuckles Mountain Range</div>
+              <div class="place-desc">UNESCO biodiversity hotspot for trekking.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nuwara Eliya -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Nuwara Eliya</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Horton Plains National Park.jpg" alt="Horton Plains"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Horton Plains</div>
+              <div class="place-desc">Flat tableland with World's End — a dramatic cliff drop.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Gregory Lake.jpg" alt="Gregory Lake"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Gregory Lake</div>
+              <div class="place-desc">Peaceful lake great for boating and picnics.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/pedro-tea.jpg" alt="Pedro Tea Estate"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Pedro Tea Estate</div>
+              <div class="place-desc">Working tea factory tour through lush plantations.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/victoria-park.jpg" alt="Victoria Park"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Victoria Park</div>
+              <div class="place-desc">Colonial-era park with diverse bird species.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Central Province end -->
+
+    <!-- ═══════════════════════════
+         3. SOUTHERN PROVINCE
+    ═══════════════════════════ -->
+    <div class="province-block">
+      <div class="province-heading">
+        <span class="province-emoji">🌊</span>
+        <span class="province-name-text">Southern Province</span>
+        <span class="province-badge">3 Districts</span>
+      </div>
+
+      <!-- Galle -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Galle</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Galle Fort.jpg" alt="Galle Fort"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Galle Fort</div>
+              <div class="place-desc">UNESCO 17th-century Dutch fortress by the ocean.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Unawatuna Beach.jpg" alt="Unawatuna Beach"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Unawatuna Beach</div>
+              <div class="place-desc">Crescent beach ideal for swimming and diving.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Jungle Beach.jpg" alt="Jungle Beach"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Jungle Beach</div>
+              <div class="place-desc">Hidden cove surrounded by jungle greenery.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/japanese-pagoda.jpg" alt="Japanese Pagoda"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Japanese Peace Pagoda</div>
+              <div class="place-desc">Peaceful hilltop pagoda with ocean views.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Matara -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Matara</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Mirissa Beach.jpg" alt="Mirissa Beach"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Mirissa Beach</div>
+              <div class="place-desc">Famous for whale watching and sunset vibes.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Parrot Rock.jpg" alt="Parrot Rock"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Parrot Rock</div>
+              <div class="place-desc">Rocky island viewpoint just off the coast.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Dondra Lighthouse.jpg" alt="Dondra Lighthouse"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Dondra Lighthouse</div>
+              <div class="place-desc">Sri Lanka's tallest lighthouse at the southernmost tip.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/star-fort.jpg" alt="Star Fort"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Star Fort Matara</div>
+              <div class="place-desc">18th-century Dutch star-shaped fort.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hambantota -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Hambantota</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Yala (border area).jpg" alt="Yala National Park"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Yala National Park</div>
+              <div class="place-desc">Highest leopard density in the world.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Udawalawe Elephant Transit Home.jpg" alt="Udawalawe Elephant Home"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Udawalawe Elephant Home</div>
+              <div class="place-desc">Rehabilitation centre for orphaned elephants.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Bundala National Park.jpg" alt="Bundala National Park"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Bundala National Park</div>
+              <div class="place-desc">Ramsar wetland, winter home to flamingos.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Kalametiya Bird Sanctuary.jpg" alt="Kalametiya Bird Sanctuary"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Kalametiya Bird Sanctuary</div>
+              <div class="place-desc">Coastal lagoon for rare migratory birds.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Southern Province end -->
+
+    <!-- ═══════════════════════════
+         4. NORTHERN PROVINCE
+    ═══════════════════════════ -->
+    <div class="province-block">
+      <div class="province-heading">
+        <span class="province-emoji">🏺</span>
+        <span class="province-name-text">Northern Province</span>
+        <span class="province-badge">5 Districts</span>
+      </div>
+
+      <!-- Jaffna -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Jaffna</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Nallur temple.jpg" alt="Nallur Kandaswamy Temple"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Nallur Kandaswamy Temple</div>
+              <div class="place-desc">Grand Hindu temple with towering gopuram.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Jaffna Fort.jpg" alt="Jaffna Fort"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Jaffna Fort</div>
+              <div class="place-desc">Portuguese-built fort overlooking the lagoon.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/casuarina.jpg" alt="Casuarina Beach"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Casuarina Beach</div>
+              <div class="place-desc">Shallow calm beach perfect for families.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Delft Island.jpg" alt="Delft Island"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Delft Island</div>
+              <div class="place-desc">Remote island with wild ponies and ruins.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kilinochchi -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Kilinochchi</h3>
+          <span class="dist-count">3 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/iranamadu.jpg" alt="Iranamadu Tank"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Iranamadu Tank</div>
+              <div class="place-desc">Largest irrigation tank in the north.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/elephant-pass.jpg" alt="Elephant Pass"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Elephant Pass</div>
+              <div class="place-desc">Historic causeway connecting Jaffna peninsula.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/war-memorial.jpg" alt="War Memorial"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">War Memorial</div>
+              <div class="place-desc">Monument commemorating the civil war history.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mannar -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Mannar</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Mannar Fort.jpg" alt="Mannar Fort"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Mannar Fort</div>
+              <div class="place-desc">16th-century Portuguese fort on Mannar island.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Baobab Tree.jpg" alt="Ancient Baobab"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Ancient Baobab Tree</div>
+              <div class="place-desc">400-year-old African baobab tree.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Madhu Church.jpg" alt="Madhu Church"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Madhu Church</div>
+              <div class="place-desc">Sacred pilgrimage site for all religions.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Adams Bridge Viewpoint.webp" alt="Adams Bridge"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Adams Bridge</div>
+              <div class="place-desc">Mythical Ram Setu — chain of limestone shoals to India.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mullaitivu -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Mullaitivu</h3>
+          <span class="dist-count">3 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/alampil.jpg" alt="Alampil Beach"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Alampil Beach</div>
+              <div class="place-desc">Untouched pristine beach on the northeast coast.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Kokkilai Lagoon.jpg" alt="Kokkilai Lagoon"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Kokkilai Lagoon</div>
+              <div class="place-desc">Bird paradise with flamingos and pelicans.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Nayaru Beach.jpg" alt="Nayaru Beach"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Nayaru Beach</div>
+              <div class="place-desc">Scenic coastline with sea turtle nesting sites.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vavuniya -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Vavuniya</h3>
+          <span class="dist-count">3 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/vavuniya-tank.jpg" alt="Vavuniya Tank"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Vavuniya Tank</div>
+              <div class="place-desc">Ancient reservoir in the heart of Vavuniya.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/mamaduwa.jpg" alt="Mamaduwa Temple"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Mamaduwa Temple</div>
+              <div class="place-desc">Ancient Buddhist temple with rock inscriptions.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/kandasamy.jpg" alt="Kandasamy Kovil"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Kandasamy Kovil</div>
+              <div class="place-desc">Vibrant Hindu temple popular during festivals.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Northern Province end -->
+
+    <!-- ═══════════════════════════
+         5. EASTERN PROVINCE
+    ═══════════════════════════ -->
+    <div class="province-block">
+      <div class="province-heading">
+        <span class="province-emoji">🏖️</span>
+        <span class="province-name-text">Eastern Province</span>
+        <span class="province-badge">3 Districts</span>
+      </div>
+
+      <!-- Trincomalee -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Trincomalee</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Nilaveli beach trinco.jpg" alt="Nilaveli Beach"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Nilaveli Beach</div>
+              <div class="place-desc">Crystal-clear waters and powdery white sand.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Pigeon Island.jpg" alt="Pigeon Island"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Pigeon Island</div>
+              <div class="place-desc">National park with vibrant coral reefs and fish.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Koneswaram Temple.jpg" alt="Koneswaram Temple"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Koneswaram Temple</div>
+              <div class="place-desc">Ancient cliff-top Hindu temple over the sea.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/hot-springs.jpg" alt="Kanniya Hot Springs"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Kanniya Hot Springs</div>
+              <div class="place-desc">Seven natural hot water springs in the jungle.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Batticaloa -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Batticaloa</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Pasikudah Beach.jpg" alt="Pasikudah Beach"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Pasikudah Beach</div>
+              <div class="place-desc">Shallow calm bay ideal for non-swimmers.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Batticaloa Fort.jpg" alt="Batticaloa Fort"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Batticaloa Fort</div>
+              <div class="place-desc">17th-century Dutch fort on the lagoon edge.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/kallady-bridge pot.jpg" alt="Kallady Bridge"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Kallady Bridge</div>
+              <div class="place-desc">Scenic bridge over the beautiful Batticaloa lagoon.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/singing-fish.jpg" alt="Singing Fish Point"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Singing Fish Point</div>
+              <div class="place-desc">Mysterious lagoon where fish produce musical sounds.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ampara -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Ampara</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Arugam Bay.jpg" alt="Arugam Bay"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Arugam Bay</div>
+              <div class="place-desc">World-class surf point on the east coast.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Kumana National Park.jpg" alt="Kumana National Park"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Kumana National Park</div>
+              <div class="place-desc">Pristine lagoon park famous for water birds.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Lahugala National Park.jpg" alt="Lahugala National Park"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Lahugala National Park</div>
+              <div class="place-desc">Small but rich elephant haven near Arugam Bay.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/deegawapi.jpg" alt="Deegawapi Temple"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Deegawapi Temple</div>
+              <div class="place-desc">Ancient Buddhist stupa of great historical importance.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Eastern Province end -->
+
+    <!-- ═══════════════════════════
+         6. NORTH WESTERN PROVINCE
+    ═══════════════════════════ -->
+    <div class="province-block">
+      <div class="province-heading">
+        <span class="province-emoji">🥥</span>
+        <span class="province-name-text">North Western Province</span>
+        <span class="province-badge">2 Districts</span>
+      </div>
+
+      <!-- Kurunegala -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Kurunegala</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Ethugala Rock.jpg" alt="Ethugala Rock"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Ethugala Rock</div>
+              <div class="place-desc">Iconic elephant-shaped rock in the town centre.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Yapahuwa Rock Fortress.jpg" alt="Yapahuwa Rock Fortress"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Yapahuwa Rock Fortress</div>
+              <div class="place-desc">13th-century rock fortress with ornate staircase.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Ridi Viharaya.jpg" alt="Ridi Viharaya"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Ridi Viharaya</div>
+              <div class="place-desc">Ancient cave temple with gold-painted interiors.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Panduwasnuwara.jfif" alt="Panduwasnuwara"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Panduwasnuwara</div>
+              <div class="place-desc">Ancient royal city ruins from the 5th century.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Puttalam -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Puttalam</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Wilpattu National Park.jpg" alt="Wilpattu National Park"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Wilpattu National Park</div>
+              <div class="place-desc">Oldest and largest national park with leopards.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Kalpitiya Lagoon.jpg" alt="Kalpitiya Lagoon"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Kalpitiya Lagoon</div>
+              <div class="place-desc">Dolphin watching and kitesurfing paradise.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Bar Reef.jpg" alt="Bar Reef Marine Sanctuary"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Bar Reef Marine Sanctuary</div>
+              <div class="place-desc">Largest coral reef in Sri Lanka.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Dutch Bay.jpeg" alt="Dutch Bay"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Dutch Bay</div>
+              <div class="place-desc">Scenic bay with fishing boats and calm waters.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- North Western Province end -->
+
+    <!-- ═══════════════════════════
+         7. NORTH CENTRAL PROVINCE
+    ═══════════════════════════ -->
+    <div class="province-block">
+      <div class="province-heading">
+        <span class="province-emoji">🏛️</span>
+        <span class="province-name-text">North Central Province</span>
+        <span class="province-badge">2 Districts</span>
+      </div>
+
+      <!-- Anuradhapura -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Anuradhapura</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Sri Maha Bodhiya.jpg" alt="Sri Maha Bodhiya"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Sri Maha Bodhiya</div>
+              <div class="place-desc">Sacred fig tree grown from Buddha's original Bo tree.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Ruwanwelisaya.jpg" alt="Ruwanwelisaya"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Ruwanwelisaya</div>
+              <div class="place-desc">Massive white stupa built by King Dutugemunu.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Jetavanaramaya.jpg" alt="Jetavanaramaya"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Jetavanaramaya</div>
+              <div class="place-desc">Once the world's tallest brick structure.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Abhayagiriya.jpg" alt="Abhayagiriya Stupa"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Abhayagiriya Stupa</div>
+              <div class="place-desc">Ancient monastic complex and important pilgrimage site.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Polonnaruwa -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Polonnaruwa</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Gal Vihara.jpg" alt="Gal Vihara"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Gal Vihara</div>
+              <div class="place-desc">Magnificent rock-carved Buddha statues.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Parakrama Samudraya.jpg" alt="Parakrama Samudraya"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Parakrama Samudraya</div>
+              <div class="place-desc">Ancient sea of Parakrama — massive reservoir.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Royal Palace ruins.jpg" alt="Royal Palace Ruins"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Royal Palace Ruins</div>
+              <div class="place-desc">Medieval royal palace of King Parakramabahu.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Lankatilaka Temple.jpg" alt="Lankathilaka Temple"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Lankathilaka Temple</div>
+              <div class="place-desc">Towering brick temple with headless standing Buddha.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- North Central Province end -->
+
+    <!-- ═══════════════════════════
+         8. UVA PROVINCE
+    ═══════════════════════════ -->
+    <div class="province-block">
+      <div class="province-heading">
+        <span class="province-emoji">🌿</span>
+        <span class="province-name-text">Uva Province</span>
+        <span class="province-badge">2 Districts</span>
+      </div>
+
+      <!-- Badulla -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Badulla</h3>
+          <span class="dist-count">5 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Nine Arches Bridge.jpg" alt="Nine Arches Bridge"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Nine Arches Bridge</div>
+              <div class="place-desc">Colonial stone viaduct in lush jungle near Ella.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Ella Rock.jpg" alt="Ella Rock"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Ella Rock</div>
+              <div class="place-desc">Iconic hiking destination with 360° valley views.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Diyaluma falls.jpg" alt="Diyaluma Falls"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Diyaluma Falls</div>
+              <div class="place-desc">Sri Lanka's second tallest waterfall — 171 metres.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Dunhinda Falls.jpg" alt="Dunhinda Falls"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Dunhinda Falls</div>
+              <div class="place-desc">Misty bridal veil waterfall hidden in the forest.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/little-adams.jpg" alt="Little Adam's Peak"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Little Adam's Peak</div>
+              <div class="place-desc">Easy hike with spectacular panoramic views.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monaragala -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Monaragala</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Buduruwagala Temple.jpg" alt="Buduruwagala Temple"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Buduruwagala Temple</div>
+              <div class="place-desc">Rock-cut Buddhist sculptures from the 9th century.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Maligawila Buddha Statue.jpg" alt="Maligawila Buddha Statue"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Maligawila Buddha Statue</div>
+              <div class="place-desc">One of tallest ancient standing Buddha statues.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Gal oya national park.jpg" alt="Gal Oya National Park"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Gal Oya National Park</div>
+              <div class="place-desc">Sri Lanka's only lake-based safari experience.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/huluganga.jpg" alt="Huluganga River"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Huluganga River</div>
+              <div class="place-desc">Beautiful river for swimming and nature walks.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Uva Province end -->
+
+    <!-- ═══════════════════════════
+         9. SABARAGAMUWA PROVINCE
+    ═══════════════════════════ -->
+    <div class="province-block">
+      <div class="province-heading">
+        <span class="province-emoji">💎</span>
+        <span class="province-name-text">Sabaragamuwa Province</span>
+        <span class="province-badge">2 Districts</span>
+      </div>
+
+      <!-- Ratnapura -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Ratnapura</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Sinharaja Forest Reserve.jpg" alt="Sinharaja Forest"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Sinharaja Forest Reserve</div>
+              <div class="place-desc">UNESCO Biosphere — Sri Lanka's last primary rainforest.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Adam’s Peak (Sri Pada).jpg" alt="Adam's Peak"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Adam's Peak (Sri Pada)</div>
+              <div class="place-desc">Sacred pilgrimage mountain with footprint at summit.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Bopath Ella Falls.jpg" alt="Bopath Ella Falls"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Bopath Ella Falls</div>
+              <div class="place-desc">Leaf-shaped waterfall surrounded by greenery.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/gem-mines.jpg" alt="Gem Mines Ratnapura"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Gem Mines Ratnapura</div>
+              <div class="place-desc">Experience traditional gem mining in Gem City.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kegalle -->
+      <div class="district-block">
+        <div class="district-subheading">
+          <span class="material-icons">place</span>
+          <h3>Kegalle</h3>
+          <span class="dist-count">4 places</span>
+        </div>
+        <div class="places-grid">
+          <div class="place-card">
+            <div class="place-img"><img src="places/Pinnawala Elephant Orphanage.jpg" alt="Pinnawala Elephant Orphanage"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Pinnawala Elephant Orphanage</div>
+              <div class="place-desc">World-famous sanctuary for orphaned elephants.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Kitulgala Adventure Zone.jpg" alt="Kitulgala Adventure Zone"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Kitulgala Adventure Zone</div>
+              <div class="place-desc">White-water rafting on the Kelani River.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/Belilena Cave.jpg" alt="Belilena Cave"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Belilena Cave</div>
+              <div class="place-desc">Prehistoric cave with ancient human remains.</div>
+            </div>
+          </div>
+          <div class="place-card">
+            <div class="place-img"><img src="places/saman-devalaya.jpg" alt="Maha Saman Devalaya"></div>
+            <div class="place-details">
+              <div class="place-tag"><span class="material-icons">tour</span>Tourist Attraction</div>
+              <div class="place-name">Maha Saman Devalaya</div>
+              <div class="place-desc">Sacred Hindu shrine dedicated to God Saman.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sabaragamuwa Province end -->
+
+  </div>
+  <!-- districtsView end -->
+
+        </section>
+        
+<section class="hotels" id="hotelsSection">
+  <div class="section-divider"></div>
+
+  <div class="sec-header">
+    <div>
+      <div class="sec-eyebrow">Explore Sri Lanka</div>
+      <h2 class="sec-title">Hotels &amp; Stays</h2>
+      <p class="sec-sub">Discover Sri Lanka's nine provinces — from misty highlands to golden coastlines.</p>
+    </div>
+  </div>
+
+  <!-- ── Filter Row ── -->
+  <div class="filter-row">
+    <span class="filter-label">Filter by</span>
+    <select id="hotelFilter-P" class="filter-select" >
+    <option value="all">All Provinces</option>
+</select>
+
+  <select id="hotelFilter-D" class="filter-select">
+    <option value="all">All Districts</option>
+</select>
+  </div>
+
+  <!-- ── Hotel Cards Grid ── -->
+  <!-- 
+    IMPORTANT: Every hotel-card MUST have:
+      data-hotel-name="Exact Hotel Name from DB"
+    The name here must EXACTLY match hotel_name in your hotel_district table.
+  -->
+  <div class="hotels-grid" id="hotelsGrid">
+
+    <!-- ══ WESTERN PROVINCE ══ -->
+
+    <!-- Colombo -->
+    <div class="hotel-card" data-hotel-name="CityRest Fort">
+      <div class="hotel-img">
+        <img src="Hotels/CityRest Fort.jpg" alt="CityRest Fort">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Colombo</div>
+        <div class="hotel-name">CityRest Fort</div>
+        <div class="hotel-bio">Budget stay in Colombo city center, perfect for short city visits.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span><span class="fac-tag">AC</span><span class="fac-tag">Lounge</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 12,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Shangri-La Colombo">
+      <div class="hotel-img">
+        <img src="Hotels/Shangri-La Colombo.jpg" alt="Shangri-La Colombo">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Colombo</div>
+        <div class="hotel-name">Shangri-La Colombo</div>
+        <div class="hotel-bio">Premium oceanfront luxury hotel with world-class service.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Pool</span><span class="fac-tag">Spa</span><span class="fac-tag">Sea view</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 80,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gampaha -->
+    <div class="hotel-card" data-hotel-name="Airport Green View Resort">
+      <div class="hotel-img">
+        <img src="Hotels/Airport Green View Resort.jpg" alt="Airport Green View Resort">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Gampaha</div>
+        <div class="hotel-name">Airport Green View Resort</div>
+        <div class="hotel-bio">Comfortable stay near airport with easy city access.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span><span class="fac-tag">AC</span><span class="fac-tag">Shuttle</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 10,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Jetwing Blue">
+      <div class="hotel-img">
+        <img src="Hotels/Jetwing Blue.jpg" alt="Jetwing Blue">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Gampaha</div>
+        <div class="hotel-name">Jetwing Blue</div>
+        <div class="hotel-bio">Luxury beachfront hotel with tropical relaxation.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Beach</span><span class="fac-tag">Pool</span><span class="fac-tag">Spa</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 50,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kalutara -->
+    <div class="hotel-card" data-hotel-name="Hotel Coconut Bay">
+      <div class="hotel-img">
+        <img src="Hotels/Hotel Coconut Bay.jpg" alt="Hotel Coconut Bay">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Kalutara</div>
+        <div class="hotel-name">Hotel Coconut Bay</div>
+        <div class="hotel-bio">Calm riverside stay with relaxing atmosphere.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span><span class="fac-tag">Pool</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 15,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Anantara Kalutara Resort">
+      <div class="hotel-img">
+        <img src="Hotels/Anantara Kalutara Resort.jpg" alt="Anantara Kalutara Resort">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Kalutara</div>
+        <div class="hotel-name">Anantara Kalutara Resort</div>
+        <div class="hotel-bio">Luxury lagoon resort surrounded by ocean and river.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Villas</span><span class="fac-tag">Lagoon view</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 90,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CENTRAL PROVINCE ══ -->
+
+    <!-- Kandy -->
+    <div class="hotel-card" data-hotel-name="Hotel Topaz">
+      <div class="hotel-img">
+        <img src="Hotels/Hotel Topaz.jpg" alt="Hotel Topaz">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Kandy</div>
+        <div class="hotel-name">Hotel Topaz</div>
+        <div class="hotel-bio">Scenic hilltop stay overlooking Kandy city.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span><span class="fac-tag">View</span><span class="fac-tag">Restaurant</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 18,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Earl's Regency Hotel">
+      <div class="hotel-img">
+        <img src="Hotels/Earl's Regency Hotel.jpg" alt="Earl's Regency Hotel">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Kandy</div>
+        <div class="hotel-name">Earl's Regency Hotel</div>
+        <div class="hotel-bio">Elegant luxury stay blending culture and comfort.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Pool</span><span class="fac-tag">Spa</span><span class="fac-tag">Gym</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 60,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Matale -->
+    <div class="hotel-card" data-hotel-name="Hotel Riverston">
+      <div class="hotel-img">
+        <img src="Hotels/Hotel Riverston.jpg" alt="Hotel Riverston">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Matale</div>
+        <div class="hotel-name">Hotel Riverston</div>
+        <div class="hotel-bio">Peaceful mountain stay near scenic Riverston hills.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span><span class="fac-tag">Mountain view</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 12,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Jim's Farm Villas">
+      <div class="hotel-img">
+        <img src="Hotels/Jim's Farm Villas.jpg" alt="Jim's Farm Villas">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Matale</div>
+        <div class="hotel-name">Jim's Farm Villas</div>
+        <div class="hotel-bio">Exclusive villa experience in nature surroundings.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Private villa</span><span class="fac-tag">Pool</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 70,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nuwara Eliya -->
+    <div class="hotel-card" data-hotel-name="Heaven Seven">
+      <div class="hotel-img">
+        <img src="Hotels/Heaven Seven.jpg" alt="Heaven Seven">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Nuwara Eliya</div>
+        <div class="hotel-name">Heaven Seven</div>
+        <div class="hotel-bio">Cozy hill-country stay with cool climate comfort.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Heater</span><span class="fac-tag">WiFi</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 16,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Grand Hotel Nuwara Eliya">
+      <div class="hotel-img">
+        <img src="Hotels/Grand Hotel Nuwara Eliya.jpg" alt="Grand Hotel Nuwara Eliya">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Nuwara Eliya</div>
+        <div class="hotel-name">Grand Hotel Nuwara Eliya</div>
+        <div class="hotel-bio">Colonial-style luxury hotel with elegant gardens.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Garden</span><span class="fac-tag">Fine dining</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 70,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SOUTHERN PROVINCE ══ -->
+
+    <!-- Galle -->
+    <div class="hotel-card" data-hotel-name="Fort Bliss Galle">
+      <div class="hotel-img">
+        <img src="Hotels/Fort Bliss Galle.jpg" alt="Fort Bliss Galle">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Galle</div>
+        <div class="hotel-name">Fort Bliss Galle</div>
+        <div class="hotel-bio">Affordable stay near historic Galle Fort.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span><span class="fac-tag">AC</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 15,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Jetwing Lighthouse">
+      <div class="hotel-img">
+        <img src="Hotels/Jetwing Lighthouse.jpg" alt="Jetwing Lighthouse">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Galle</div>
+        <div class="hotel-name">Jetwing Lighthouse</div>
+        <div class="hotel-bio">Luxury coastal hotel with stunning lighthouse views.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Ocean view</span><span class="fac-tag">Spa</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 80,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Matara -->
+    <div class="hotel-card" data-hotel-name="Beach Inns Resort">
+      <div class="hotel-img">
+        <img src="Hotels/Beach Inns Resort.jpg" alt="Beach Inns Resort">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Matara</div>
+        <div class="hotel-name">Beach Inns Resort</div>
+        <div class="hotel-bio">Simple beachside stay with relaxing vibes.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Beach access</span><span class="fac-tag">WiFi</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 12,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Cape Weligama">
+      <div class="hotel-img">
+        <img src="Hotels/Cape Weligama.jpg" alt="Cape Weligama">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Matara</div>
+        <div class="hotel-name">Cape Weligama</div>
+        <div class="hotel-bio">Ultra-luxury cliffside resort overlooking ocean.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Infinity pool</span><span class="fac-tag">Villas</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 120,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hambantota -->
+    <div class="hotel-card" data-hotel-name="Peacock Beach Hotel">
+      <div class="hotel-img">
+        <img src="Hotels/Peacock Beach Hotel.jpg" alt="Peacock Beach Hotel">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Hambantota</div>
+        <div class="hotel-name">Peacock Beach Hotel</div>
+        <div class="hotel-bio">Calm coastal stay near southern beaches.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span><span class="fac-tag">Pool</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 14,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Shangri-La Hambantota">
+      <div class="hotel-img">
+        <img src="Hotels/Shangri-La Hambantota.jpg" alt="Shangri-La Hambantota">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Hambantota</div>
+        <div class="hotel-name">Shangri-La Hambantota</div>
+        <div class="hotel-bio">Luxury resort with golf course and oceanfront views.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Golf</span><span class="fac-tag">Spa</span><span class="fac-tag">Beach</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 90,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ NORTHERN PROVINCE ══ -->
+
+    <!-- Jaffna -->
+    <div class="hotel-card" data-hotel-name="Jetwing Jaffna">
+      <div class="hotel-img">
+        <img src="Hotels/Jetwing Jaffna.jpg" alt="Jetwing Jaffna">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Jaffna</div>
+        <div class="hotel-name">Jetwing Jaffna</div>
+        <div class="hotel-bio">Modern hotel in culturally rich northern city.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span><span class="fac-tag">AC</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 25,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="North Gate by Jetwing">
+      <div class="hotel-img">
+        <img src="Hotels/North Gate by Jetwing.jpg" alt="North Gate by Jetwing">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Jaffna</div>
+        <div class="hotel-name">North Gate by Jetwing</div>
+        <div class="hotel-bio">Contemporary luxury hotel in Jaffna city center.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Rooftop pool</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 35,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kilinochchi -->
+    <div class="hotel-card" data-hotel-name="Ahi House">
+      <div class="hotel-img">
+        <img src="Hotels/Ahi House.jpg" alt="Ahi House">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Kilinochchi</div>
+        <div class="hotel-name">Ahi House</div>
+        <div class="hotel-bio">Simple and budget-friendly rural stay.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 10,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Reecha Resort">
+      <div class="hotel-img">
+        <img src="Hotels/Reecha Resort.jpg" alt="Reecha Resort">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Kilinochchi</div>
+        <div class="hotel-name">Reecha Resort</div>
+        <div class="hotel-bio">Relaxing resort surrounded by greenery.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Pool</span><span class="fac-tag">Garden</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 30,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mannar -->
+    <div class="hotel-card" data-hotel-name="Hotel Agape">
+      <div class="hotel-img">
+        <img src="Hotels/Hotel Agape.jpg" alt="Hotel Agape">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Mannar</div>
+        <div class="hotel-name">Hotel Agape</div>
+        <div class="hotel-bio">Quiet coastal stay near Mannar lagoon.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 12,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Palmyrah House">
+      <div class="hotel-img">
+        <img src="Hotels/Palmyrah House.jpg" alt="Palmyrah House">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Mannar</div>
+        <div class="hotel-name">Palmyrah House</div>
+        <div class="hotel-bio">Boutique luxury resort in peaceful island setting.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Garden</span><span class="fac-tag">Dining</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 40,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mullaitivu -->
+    <div class="hotel-card" data-hotel-name="Beach Hotel">
+      <div class="hotel-img">
+        <img src="Hotels/Beach Hotel.jpg" alt="Beach Hotel">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Mullaitivu</div>
+        <div class="hotel-name">Beach Hotel</div>
+        <div class="hotel-bio">Simple beachfront stay with natural beauty.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Beach</span><span class="fac-tag">WiFi</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 10,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Akkarai Resort">
+      <div class="hotel-img">
+        <img src="Hotels/Akkarai Resort.jpg" alt="Akkarai Resort">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Mullaitivu</div>
+        <div class="hotel-name">Akkarai Resort</div>
+        <div class="hotel-bio">Relaxing seaside resort with ocean views.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Pool</span><span class="fac-tag">Sea view</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 30,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vavuniya -->
+    <div class="hotel-card" data-hotel-name="Hotel NorthWay">
+      <div class="hotel-img">
+        <img src="Hotels/Hotel NorthWay.jpg" alt="Hotel NorthWay">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Vavuniya</div>
+        <div class="hotel-name">Hotel NorthWay</div>
+        <div class="hotel-bio">Comfortable city stay in northern region.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span><span class="fac-tag">AC</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 12,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Nelly Star Hotel">
+      <div class="hotel-img">
+        <img src="Hotels/Nelly Star Hotel.jpg" alt="Nelly Star Hotel">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Vavuniya</div>
+        <div class="hotel-name">Nelly Star Hotel</div>
+        <div class="hotel-bio">Modern hotel with full amenities.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Pool</span><span class="fac-tag">Restaurant</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 25,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ EASTERN PROVINCE ══ -->
+
+    <!-- Trincomalee -->
+    <div class="hotel-card" data-hotel-name="Hotel Tobiko">
+      <div class="hotel-img">
+        <img src="Hotels/Hotel Tobiko.jpg" alt="Hotel Tobiko">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Trincomalee</div>
+        <div class="hotel-name">Hotel Tobiko</div>
+        <div class="hotel-bio">Beachside stay near Trincomalee coast.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Beach</span><span class="fac-tag">WiFi</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 12,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Amaranthe Bay Resort">
+      <div class="hotel-img">
+        <img src="Hotels/Amaranthe Bay Resort.jpg" alt="Amaranthe Bay Resort">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Trincomalee</div>
+        <div class="hotel-name">Amaranthe Bay Resort</div>
+        <div class="hotel-bio">Luxury lagoon resort with tropical views.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Lagoon</span><span class="fac-tag">Spa</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 50,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Batticaloa -->
+    <div class="hotel-card" data-hotel-name="Riviera Resort">
+      <div class="hotel-img">
+        <img src="Hotels/Riviera Resort.jpg" alt="Riviera Resort">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Batticaloa</div>
+        <div class="hotel-name">Riviera Resort</div>
+        <div class="hotel-bio">Peaceful lagoon-side stay.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 12,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Amaya Beach Pasikudah">
+      <div class="hotel-img">
+        <img src="Hotels/Amaya Beach Pasikudah.jpg" alt="Amaya Beach Pasikudah">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Batticaloa</div>
+        <div class="hotel-name">Amaya Beach Pasikudah</div>
+        <div class="hotel-bio">Premium beachfront luxury resort.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Beach</span><span class="fac-tag">Pool</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 60,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ampara -->
+    <div class="hotel-card" data-hotel-name="Panama Beach Resort">
+      <div class="hotel-img">
+        <img src="Hotels/Panama Beach Resort.jpg" alt="Panama Beach Resort">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Ampara</div>
+        <div class="hotel-name">Panama Beach Resort</div>
+        <div class="hotel-bio">Natural beachside eco stay.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Beach</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 14,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Jetwing Surf">
+      <div class="hotel-img">
+        <img src="Hotels/Jetwing Surf.jpg" alt="Jetwing Surf">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Ampara</div>
+        <div class="hotel-name">Jetwing Surf</div>
+        <div class="hotel-bio">Eco-luxury surf resort near Arugam Bay.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Eco villas</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 70,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ NORTH WESTERN PROVINCE ══ -->
+
+    <!-- Kurunegala -->
+    <div class="hotel-card" data-hotel-name="Hotel Blue Sky">
+      <div class="hotel-img">
+        <img src="Hotels/Hotel Blue Sky.jpg" alt="Hotel Blue Sky">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Kurunegala</div>
+        <div class="hotel-name">Hotel Blue Sky</div>
+        <div class="hotel-bio">Simple city stay with comfort.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 12,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="The Kandyan Reach">
+      <div class="hotel-img">
+        <img src="Hotels/The Kandyan Reach.jpg" alt="The Kandyan Reach">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Kurunegala</div>
+        <div class="hotel-name">The Kandyan Reach</div>
+        <div class="hotel-bio">Modern luxury stay with city facilities.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Pool</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 35,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Puttalam -->
+    <div class="hotel-card" data-hotel-name="Anantaya Chilaw">
+      <div class="hotel-img">
+        <img src="Hotels/Anantaya Chilaw.jpg" alt="Anantaya Chilaw">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Puttalam</div>
+        <div class="hotel-name">Anantaya Chilaw</div>
+        <div class="hotel-bio">Relaxing lagoon-side resort stay.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Pool</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 18,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Club Hotel Dolphin">
+      <div class="hotel-img">
+        <img src="Hotels/Club Hotel Dolphin.jpg" alt="Club Hotel Dolphin">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Puttalam</div>
+        <div class="hotel-name">Club Hotel Dolphin</div>
+        <div class="hotel-bio">Family-friendly beachfront luxury resort.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Beach</span><span class="fac-tag">Spa</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 50,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ NORTH CENTRAL PROVINCE ══ -->
+
+    <!-- Anuradhapura -->
+    <div class="hotel-card" data-hotel-name="Hotel Alakamanda">
+      <div class="hotel-img">
+        <img src="Hotels/Hotel Alakamanda.jpg" alt="Hotel Alakamanda">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Anuradhapura</div>
+        <div class="hotel-name">Hotel Alakamanda</div>
+        <div class="hotel-bio">Heritage city budget stay.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 12,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Uga Ulagalla">
+      <div class="hotel-img">
+        <img src="Hotels/Uga Ulagalla.jpg" alt="Uga Ulagalla">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Anuradhapura</div>
+        <div class="hotel-name">Uga Ulagalla</div>
+        <div class="hotel-bio">Luxury heritage villa experience in nature.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Private villas</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 120,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Polonnaruwa -->
+    <div class="hotel-card" data-hotel-name="Hotel Sudu Araliya">
+      <div class="hotel-img">
+        <img src="Hotels/Hotel Sudu Araliya.jpg" alt="Hotel Sudu Araliya">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Polonnaruwa</div>
+        <div class="hotel-name">Hotel Sudu Araliya</div>
+        <div class="hotel-bio">Comfortable stay near ancient ruins.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 14,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="EKHO Lake House">
+      <div class="hotel-img">
+        <img src="Hotels/EKHO Lake House.jpg" alt="EKHO Lake House">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Polonnaruwa</div>
+        <div class="hotel-name">EKHO Lake House</div>
+        <div class="hotel-bio">Boutique hotel with peaceful lake views.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Lake view</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 40,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ UVA PROVINCE ══ -->
+
+    <!-- Badulla -->
+    <div class="hotel-card" data-hotel-name="Ella Mount Heaven">
+      <div class="hotel-img">
+        <img src="Hotels/Ella Mount Heaven.jpg" alt="Ella Mount Heaven">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Badulla</div>
+        <div class="hotel-name">Ella Mount Heaven</div>
+        <div class="hotel-bio">Scenic mountain stay in Ella hills.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">View</span><span class="fac-tag">WiFi</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 15,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="98 Acres Resort">
+      <div class="hotel-img">
+        <img src="Hotels/98 Acres Resort.jpg" alt="98 Acres Resort">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Badulla</div>
+        <div class="hotel-name">98 Acres Resort</div>
+        <div class="hotel-bio">Luxury eco resort surrounded by tea plantations.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Tea estate view</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 80,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monaragala -->
+    <div class="hotel-card" data-hotel-name="Elephant Reach Udawalawa">
+      <div class="hotel-img">
+        <img src="Hotels/Elephant Reach Udawalawa.jpg" alt="Elephant Reach Udawalawa">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Monaragala</div>
+        <div class="hotel-name">Elephant Reach Udawalawa</div>
+        <div class="hotel-bio">Wildlife-friendly budget stay.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Pool</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 14,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Grand Udawalawe Safari Resort">
+      <div class="hotel-img">
+        <img src="Hotels/Grand Udawalawe Safari Resort.jpg" alt="Grand Udawalawe Safari Resort">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Monaragala</div>
+        <div class="hotel-name">Grand Udawalawe Safari Resort</div>
+        <div class="hotel-bio">Luxury safari resort near national park.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Safari</span><span class="fac-tag">Pool</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 40,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SABARAGAMUWA PROVINCE ══ -->
+
+    <!-- Ratnapura -->
+    <div class="hotel-card" data-hotel-name="Centauria Hill Resort">
+      <div class="hotel-img">
+        <img src="Hotels/Centauria Hill Resort.jpg" alt="Centauria Hill Resort">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Ratnapura</div>
+        <div class="hotel-name">Centauria Hill Resort</div>
+        <div class="hotel-bio">Comfortable hill country stay in gem city.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">WiFi</span><span class="fac-tag">Pool</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 15,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Palmstone Retreat">
+      <div class="hotel-img">
+        <img src="Hotels/Palmstone Retreat.jpg" alt="Palmstone Retreat">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Ratnapura</div>
+        <div class="hotel-name">Palmstone Retreat</div>
+        <div class="hotel-bio">Luxury retreat surrounded by nature and river.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">River view</span><span class="fac-tag">Spa</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 50,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kegalle -->
+    <div class="hotel-card" data-hotel-name="Hotel Elephant Bay">
+      <div class="hotel-img">
+        <img src="Hotels/Hotel Elephant Bay.jpg" alt="Hotel Elephant Bay">
+        <div class="hotel-type">Normal</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Kegalle</div>
+        <div class="hotel-name">Hotel Elephant Bay</div>
+        <div class="hotel-bio">Scenic riverside budget stay.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">River view</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 12,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card" data-hotel-name="Hotel Pinnalanda">
+      <div class="hotel-img">
+        <img src="Hotels/Hotel Pinnalanda.jpg" alt="Hotel Pinnalanda">
+        <div class="hotel-type">Luxury</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-district">📍 Kegalle</div>
+        <div class="hotel-name">Hotel Pinnalanda</div>
+        <div class="hotel-bio">Relaxing hotel with elephant viewing experience.</div>
+        <div class="hotel-facilities">
+          <span class="fac-tag">Balcony</span><span class="fac-tag">Restaurant</span>
+        </div>
+        <div class="hotel-divider"></div>
+        <div class="hotel-price-row">
+          <div class="hotel-price">LKR 35,000 <span>/ person</span></div>
+          <div class="hotel-day">1 day</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /hotels-grid -->
+
+  <!-- No results message -->
+  <div class="no-results" id="noResults" style="display:none;">
+    🏨 No hotels found for this selection. Try another filter!
+  </div>
+
+  <!-- Buttons -->
+  <div style="display:flex; gap:12px; justify-content:center; margin-top:2rem;">
+    <button class="btn-viewall" id="viewAllBtn" onclick="showAllHotels()">
+      <span class="material-icons" style="font-size:18px;">grid_view</span>
+      View All Hotels
+    </button>
+    <button class="btn-hideall" id="hideAllBtn" onclick="hideExtraHotels()" style="display:none;">
+      <span class="material-icons" style="font-size:18px;">grid_view</span>
+      View Less
+    </button>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════
+     PACKAGES SECTION
+     Replace your existing <section class="Destinations packagesSection" ...>
+     with this entire block
+══════════════════════════════ -->
+
+<section class="Destinations packagesSection" id="packagesSection">
+  <div class="pkg-section">
+    <div class="section-divider"></div>
+    <div class="sec-header" style="margin-bottom: 0;">
+      <div>
+        <div class="sec-eyebrow">Plan Your Trip</div>
+        <h2 class="sec-title">Packages &amp; Booking</h2>
+        <p class="sec-sub">Tailored travel packages for every budget and dream.</p>
+      </div>
+    </div>
+
+    <!-- ── Package Cards Grid ── -->
+    <div class="pkg-cards-grid" id="pkgCardsGrid">
+      <!-- Cards are injected by JS below -->
+    </div>
+
+   
+
+    <!-- ── Book Now Hero CTA ── -->
+    <div class="pkg-hero">
+      <h2 class="pkg-hero-title" style="margin-bottom: 0.5rem;">
+        Want to Start Your<br><span>Adventures?</span>
+      </h2>
+      <p class="pkg-hero-desc" style="margin-bottom: 1rem;">
+        Create a free account and unlock personalized Sri Lanka travel packages — crafted just for your pace, budget, and dream destinations.
+      </p>
+      <button class="btn-book" style="padding: 0.6rem 1.8rem;" onclick="checkLogin()">
+        <span style="font-size:18px;">🚀</span> Book Now
+      </button>
+    </div>
+  </div>
+
+  <div class="notif-overlay" id="notifOverlay">
+    <div class="notif-box">
+      <div class="notif-title" id="notifTitle"></div>
+      <div class="notif-msg" id="notifMsg"></div>
+      <div class="notif-btns" id="notifBtns"></div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+    </main>
+<!-- ═══════════════════════════════
+     FOOTER
+═══════════════════════════════ -->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo1">
+                <img alt="Logo" src="Places/Logo2.png" height="30px" width="50px"/>
+                GlobeTrek 
+            </div>
+          <p class="footer-tagline">
+            Negombo's premier travel company. Crafting extraordinary journeys
+            since 2012.
+          </p>
+        </div>
+        <div class="footer-links-group">
+          <p class="footer-group-title">Pages</p>
+          <a href="#">Home</a>
+          <a href="#Destinations">Destinations</a>
+          <a href="#packagesSection">Packages</a>
+          <a href="#footer">About Us</a>
+        </div>
+        <div class="footer-links-group">
+          <p class="footer-group-title">Accounts</p>
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
+          <a href="bookings.html">My Bookings</a>
+        </div>
+        <div class="footer-links-group">
+          <p class="footer-group-title">Contact</p>
+          <a href="mailto:info@globetrek.lk">info@globetrek.lk</a>
+          <a href="tel:+94312234567">+94 75 972 5440</a>
+          <span style="color: var(--white-60); font-size: 0.8rem"
+            >Negombo, Sri Lanka</span
+          >
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 GlobeTrek Adventures. All rights reserved.</p>
+        <p>Built with HTML · CSS · PHP · MySQL</p>
+        <p>Built by R<b>.</b>Guruprashath</p>
+      </div>
+    </footer>
+
+    <Script>
+function toggleView() {
+    const provinceView = document.getElementById('provinceView');
+    const districtsView = document.getElementById('districtsView');
+    const toggleBtn = document.getElementById('toggleBtn');
+    
+    if (provinceView.style.display === 'none') {
+        provinceView.style.display = 'block';
+        districtsView.style.display = 'none';
+        toggleBtn.innerHTML = '<span class="material-icons">arrow_forward</span> District View';
+    } else {
+        provinceView.style.display = 'none';
+        districtsView.style.display = 'block';
+        toggleBtn.innerHTML = '<span class="material-icons">arrow_back</span> Province View';
+    }
+}
+
+// ── Show only first N hotels ──
+function showLimitedHotels(limit) {
+    let cards = document.querySelectorAll(".hotel-card");
+    cards.forEach((card, index) => {
+        card.style.display = index < limit ? "block" : "none";
+    });
+    let viewAllBtn = document.getElementById('viewAllBtn');
+    let hideAllBtn = document.getElementById('hideAllBtn');
+    if (viewAllBtn) viewAllBtn.style.display = 'flex';
+    if (hideAllBtn) hideAllBtn.style.display = 'none';
+}
+
+// ── Show all hotels ──
+function showAllHotels() {
+    document.querySelectorAll(".hotel-card").forEach(card => {
+        card.style.display = "block";
+    });
+    let viewAllBtn = document.getElementById('viewAllBtn');
+    let hideAllBtn = document.getElementById('hideAllBtn');
+    if (viewAllBtn) viewAllBtn.style.display = 'none';
+    if (hideAllBtn) hideAllBtn.style.display = 'flex';
+}
+
+// ── Hide extra hotels ──
+function hideExtraHotels() {
+    showLimitedHotels(4);
+}
+
+// ── Filter by province ──
+function filterHotelsByProvince(provinceId) {
+    fetch("get_hotels_by_province.php?province_id=" + provinceId)
+    .then(res => res.text())
+    .then(data => {
+        let hotelNames = data.trim().split("\n").map(n => n.toLowerCase().trim());
+        document.querySelectorAll(".hotel-card").forEach(card => {
+            let name = card.getAttribute("data-hotel-name").toLowerCase().trim();
+            card.style.display = hotelNames.includes(name) ? "block" : "none";
+        });
+    });
+}
+
+// ── Filter by district ──
+function filterHotelsByDistrict(districtId) {
+    fetch("get_hotels_by_district.php?district_id=" + districtId)
+    .then(res => res.text())
+    .then(data => {
+        let hotelNames = data.trim().split("\n").map(n => n.toLowerCase().trim());
+        document.querySelectorAll(".hotel-card").forEach(card => {
+            let name = card.getAttribute("data-hotel-name").toLowerCase().trim();
+            card.style.display = hotelNames.includes(name) ? "block" : "none";
+        });
+    });
+}
+
+// ── View All click — show all matching hotels ──
+function showAllHotelsFiltered() {
+    let provinceId = document.getElementById('hotelFilter-P').value;
+    let districtId = document.getElementById('hotelFilter-D').value;
+
+    if (districtId !== "all") {
+        fetch("get_hotels_by_district.php?district_id=" + districtId)
+        .then(res => res.text())
+        .then(data => {
+            let hotelNames = data.trim().split("\n").map(n => n.toLowerCase().trim());
+            document.querySelectorAll(".hotel-card").forEach(card => {
+                let name = card.getAttribute("data-hotel-name").toLowerCase().trim();
+                card.style.display = hotelNames.includes(name) ? "block" : "none";
+            });
+            let viewAllBtn = document.getElementById('viewAllBtn');
+            let hideAllBtn = document.getElementById('hideAllBtn');
+            if (viewAllBtn) viewAllBtn.style.display = 'none';
+            if (hideAllBtn) hideAllBtn.style.display = 'flex';
+        });
+    } else if (provinceId !== "all") {
+        fetch("get_hotels_by_province.php?province_id=" + provinceId)
+        .then(res => res.text())
+        .then(data => {
+            let hotelNames = data.trim().split("\n").map(n => n.toLowerCase().trim());
+            document.querySelectorAll(".hotel-card").forEach(card => {
+                let name = card.getAttribute("data-hotel-name").toLowerCase().trim();
+                card.style.display = hotelNames.includes(name) ? "block" : "none";
+            });
+            let viewAllBtn = document.getElementById('viewAllBtn');
+            let hideAllBtn = document.getElementById('hideAllBtn');
+            if (viewAllBtn) viewAllBtn.style.display = 'none';
+            if (hideAllBtn) hideAllBtn.style.display = 'flex';
+        });
+    } else {
+        showAllHotels();
+    }
+}
+
+function checkLoginStatus() {
+    const userEmail = localStorage.getItem("gt_user");
+    const userName = localStorage.getItem("gt_username");
+    const userRole = localStorage.getItem("gt_role");
+    const loggedOutState = document.getElementById("loggedOutState");
+    const loggedInState = document.getElementById("loggedInState");
+    const getStartedBtn = document.getElementById("getStartedBtn");
+    const accToggle = document.getElementById("acc-toggle");
+
+    if (userEmail) {
+        // LOGGED IN - loggedOutState HIDE, loggedInState SHOW
+        if (loggedOutState) {
+            loggedOutState.style.display = "none";
+        }
+        if (loggedInState) {
+            loggedInState.style.display = "flex";
+        }
+
+        // Username display
+        const displayName = userName || userEmail.split('@')[0];
+        const userNameSpan = document.getElementById("userNameDisplay");
+        if (userNameSpan) {
+            userNameSpan.textContent = displayName;
+            // Remove existing badge
+            const existingBadge = userNameSpan.querySelector('.role-badge');
+            if (existingBadge) existingBadge.remove();
+            // Add role badge for admin/staff
+            if (userRole === "admin" || userRole === "staff") {
+                const roleBadge = document.createElement("span");
+                roleBadge.className = "role-badge";
+                roleBadge.textContent = userRole === "admin" ? " (Admin)" : " (Staff)";
+                roleBadge.style.color = userRole === "admin" ? "#fbbf24" : "#34d399";
+                roleBadge.style.fontSize = "0.7rem";
+                userNameSpan.appendChild(roleBadge);
+            }
+        }
+    } else {
+        // LOGGED OUT - loggedOutState SHOW, loggedInState HIDE
+        if (loggedOutState) {
+            loggedOutState.style.display = "flex";
+        }
+        if (loggedInState) {
+            loggedInState.style.display = "none";
+        }
+    }
+}
+
+function logout() {
+    if (confirm("Are you sure you want to logout?")) {
+        localStorage.removeItem("gt_user");
+        localStorage.removeItem("gt_username");
+        localStorage.removeItem("gt_role");
+        location.reload();
+    }
+}
+
+// Modified checkLogin function for Book Now button
+function checkLogin() {
+    const user = localStorage.getItem("gt_user");
+    const role = localStorage.getItem("gt_role");
+    
+    if (user && role === "customer") {
+        window.location.href = "bookings.html";
+    } else if (user && (role === "admin" || role === "staff")) {
+        showNotif(
+            'Access Restricted', 
+            'Admin/Staff accounts cannot book packages directly. Please use a customer account to book.',
+            '<button class="nbtn nbtn-primary" onclick="closeNotif()">OK</button>'
+        );
+    } else {
+        showNotif(
+            'Start Your Adventure!', 
+            'You need an account to book. Sign in if you already have one, or create a free account to get started.',
+            '<a class="nbtn nbtn-primary" href="Login.html">Sign In</a><a class="nbtn nbtn-outline" href="Register.html">Create Account</a>'
+        );
+    }
+}
+
+function showNotif(title, msg, btns) {
+    document.getElementById('notifTitle').innerHTML = title;
+    document.getElementById('notifMsg').innerHTML = msg;
+    document.getElementById('notifBtns').innerHTML = btns || '<button class="nbtn nbtn-primary" onclick="closeNotif()">OK</button>';
+    document.getElementById('notifOverlay').classList.add('show');
+}
+
+function closeNotif() {
+    document.getElementById('notifOverlay').classList.remove('show');
+}
+
+// Initialize on page load
+window.addEventListener("DOMContentLoaded", function() {
+    // Check login status first
+    checkLoginStatus();
+    
+    // Hotels filter initialization
+    const provinceEl = document.getElementById("hotelFilter-P");
+    const districtEl = document.getElementById("hotelFilter-D");
+
+    if (provinceEl) {
+        fetch("get_provinces.php")
+        .then(res => res.text())
+        .then(data => {
+            provinceEl.innerHTML = "<option value='all'>All Provinces</option>" + data;
+        });
+    }
+
+    showLimitedHotels(4);
+
+    if (provinceEl) {
+        provinceEl.addEventListener("change", function() {
+            let provinceId = this.value;
+            if (districtEl) districtEl.innerHTML = "<option value='all'>All Districts</option>";
+            if (provinceId === "all") {
+                showLimitedHotels(4);
+                return;
+            }
+            fetch("get_districts.php?province_id=" + provinceId)
+            .then(res => res.text())
+            .then(data => {
+                if (districtEl) districtEl.innerHTML = "<option value='all'>All Districts</option>" + data;
+            });
+            filterHotelsByProvince(provinceId);
+        });
+    }
+
+    if (districtEl) {
+        districtEl.addEventListener("change", function() {
+            let districtId = this.value;
+            if (districtId === "all") {
+                let provinceId = provinceEl ? provinceEl.value : "all";
+                if (provinceId === "all") {
+                    showLimitedHotels(4);
+                } else {
+                    filterHotelsByProvince(provinceId);
+                }
+                return;
+            }
+            filterHotelsByDistrict(districtId);
+        });
+    }
+});
+
+// Make sure overlay click closes
+const notifOverlay = document.getElementById('notifOverlay');
+if (notifOverlay) {
+    notifOverlay.addEventListener('click', function(e) {
+        if (e.target === this) closeNotif();
+    });
+}
+
+(function () {
+  // ── Load Packages (Simple version) ──
+function loadPackages() {
+    const grid = document.getElementById('pkgCardsGrid');
+
+    fetch('render_packages.php')
+        .then(function(res) { return res.text(); })
+        .then(function(html) {
+            grid.innerHTML = html;
+        })
+        .catch(function() {
+            grid.innerHTML = '<p style="color:red;">Could not load packages.</p>';
+        });
+}
+
+
+document.addEventListener('DOMContentLoaded', loadPackages);
+})();
+
+// ── Hero Search with Suggestions + Exact Scroll ──
+(function () {
+    const searchInput = document.getElementById('hero-search');
+    const exploreBtn = document.querySelector('.search button');
+    const searchWrapper = document.querySelector('.search');
+
+    // ── Suggestion data ──
+    const suggestions = [
+        // Provinces
+        { label: '🏙️ Western Province', type: 'province', target: 'province-western' },
+        { label: '⛰️ Central Province', type: 'province', target: 'province-central' },
+        { label: '🌊 Southern Province', type: 'province', target: 'province-southern' },
+        { label: '🏺 Northern Province', type: 'province', target: 'province-northern' },
+        { label: '🏖️ Eastern Province', type: 'province', target: 'province-eastern' },
+        { label: '🥥 North Western Province', type: 'province', target: 'province-northwest' },
+        { label: '🏛️ North Central Province', type: 'province', target: 'province-northcentral' },
+        { label: '🌿 Uva Province', type: 'province', target: 'province-uva' },
+        { label: '💎 Sabaragamuwa Province', type: 'province', target: 'province-sabaragamuwa' },
+        // Districts
+        { label: '📍 Colombo', type: 'district', target: 'district-colombo' },
+        { label: '📍 Gampaha', type: 'district', target: 'district-gampaha' },
+        { label: '📍 Kalutara', type: 'district', target: 'district-kalutara' },
+        { label: '📍 Kandy', type: 'district', target: 'district-kandy' },
+        { label: '📍 Matale', type: 'district', target: 'district-matale' },
+        { label: '📍 Nuwara Eliya', type: 'district', target: 'district-nuwara' },
+        { label: '📍 Galle', type: 'district', target: 'district-galle' },
+        { label: '📍 Matara', type: 'district', target: 'district-matara' },
+        { label: '📍 Hambantota', type: 'district', target: 'district-hambantota' },
+        { label: '📍 Jaffna', type: 'district', target: 'district-jaffna' },
+        { label: '📍 Kilinochchi', type: 'district', target: 'district-kilinochchi' },
+        { label: '📍 Mannar', type: 'district', target: 'district-mannar' },
+        { label: '📍 Mullaitivu', type: 'district', target: 'district-mullaitivu' },
+        { label: '📍 Vavuniya', type: 'district', target: 'district-vavuniya' },
+        { label: '📍 Trincomalee', type: 'district', target: 'district-trincomalee' },
+        { label: '📍 Batticaloa', type: 'district', target: 'district-batticaloa' },
+        { label: '📍 Ampara', type: 'district', target: 'district-ampara' },
+        { label: '📍 Kurunegala', type: 'district', target: 'district-kurunegala' },
+        { label: '📍 Puttalam', type: 'district', target: 'district-puttalam' },
+        { label: '📍 Anuradhapura', type: 'district', target: 'district-anuradhapura' },
+        { label: '📍 Polonnaruwa', type: 'district', target: 'district-polonnaruwa' },
+        { label: '📍 Badulla', type: 'district', target: 'district-badulla' },
+        { label: '📍 Monaragala', type: 'district', target: 'district-monaragala' },
+        { label: '📍 Ratnapura', type: 'district', target: 'district-ratnapura' },
+        { label: '📍 Kegalle', type: 'district', target: 'district-kegalle' },
+        // Places
+        { label: '🗺️ Sigiriya', type: 'place', target: 'district-matale' },
+        { label: '🗺️ Galle Fort', type: 'place', target: 'district-galle' },
+        { label: '🗺️ Temple of the Tooth', type: 'place', target: 'district-kandy' },
+        { label: '🗺️ Nine Arches Bridge', type: 'place', target: 'district-badulla' },
+        { label: '🗺️ Ella Rock', type: 'place', target: 'district-badulla' },
+        { label: '🗺️ Horton Plains', type: 'place', target: 'district-nuwara' },
+        { label: '🗺️ Yala National Park', type: 'place', target: 'district-hambantota' },
+        { label: '🗺️ Arugam Bay', type: 'place', target: 'district-ampara' },
+        { label: '🗺️ Adam\'s Peak', type: 'place', target: 'district-ratnapura' },
+        { label: '🗺️ Pinnawala Elephant Orphanage', type: 'place', target: 'district-kegalle' },
+        { label: '🗺️ Nilaveli Beach', type: 'place', target: 'district-trincomalee' },
+        { label: '🗺️ Pasikudah Beach', type: 'place', target: 'district-batticaloa' },
+        { label: '🗺️ Wilpattu National Park', type: 'place', target: 'district-puttalam' },
+        { label: '🗺️ Sri Maha Bodhiya', type: 'place', target: 'district-anuradhapura' },
+        { label: '🗺️ Gal Vihara', type: 'place', target: 'district-polonnaruwa' },
+        // Hotels
+        { label: '🏨 Shangri-La Colombo', type: 'hotel', target: 'hotel-shangrila-colombo' },
+        { label: '🏨 Jetwing Blue', type: 'hotel', target: 'hotel-jetwing-blue' },
+        { label: '🏨 98 Acres Resort', type: 'hotel', target: 'hotel-98acres' },
+        { label: '🏨 Cape Weligama', type: 'hotel', target: 'hotel-cape-weligama' },
+        { label: '🏨 Uga Ulagalla', type: 'hotel', target: 'hotel-uga-ulagalla' },
+    ];
+
+  // ── Create dropdown ──
+const dropdown = document.createElement('div');
+dropdown.id = 'search-dropdown';
+
+function positionDropdown() {
+    const rect = searchWrapper.getBoundingClientRect();
+    dropdown.style.cssText = `
+        position: fixed;
+        top: ${rect.bottom + 8}px;
+        left: ${rect.left}px;
+        width: ${rect.width}px;
+        background: #0c2826;
+        border: 1px solid rgba(45,212,184,0.28);
+        border-radius: 14px;
+        overflow: hidden;
+        z-index: 99999;
+        display: none;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        max-height: 320px;
+        overflow-y: auto;
+    `;
+}
+
+positionDropdown();
+document.body.appendChild(dropdown);
+
+// Reposition on scroll/resize
+window.addEventListener('scroll', positionDropdown);
+window.addEventListener('resize', positionDropdown);
+
+    // ── Show suggestions ──
+    function showSuggestions(query) {
+        if (!query) { dropdown.style.display = 'none'; return; }
+        const filtered = suggestions.filter(s =>
+            s.label.toLowerCase().includes(query.toLowerCase())
+        ).slice(0, 8);
+
+        if (!filtered.length) { dropdown.style.display = 'none'; return; }
+
+        dropdown.innerHTML = filtered.map((s, i) => `
+            <div class="srch-item" data-index="${i}" style="
+                padding: 0.65rem 1rem;
+                font-size: 0.82rem;
+                color: #f4fffe;
+                cursor: pointer;
+                border-bottom: 1px solid rgba(45,212,184,0.08);
+                display: flex; align-items: center; gap: 0.5rem;
+                transition: background 0.15s;
+            " onmouseover="this.style.background='rgba(45,212,184,0.1)'"
+               onmouseout="this.style.background=''"
+               onclick="window._searchGo('${s.target}', '${s.type}', '${s.label}')">
+                <span style="font-size:0.75rem; padding:2px 7px; border-radius:999px; background:rgba(45,212,184,0.1); color:#2dd4b8; border:1px solid rgba(45,212,184,0.2);">${s.type}</span>
+                ${s.label}
+            </div>
+        `).join('');
+        dropdown.style.display = 'block';
+    }
+
+    // ── Add IDs to HTML elements (run once) ──
+    function tagElements() {
+        // Province blocks — match by province-name-text
+        const provinceMap = {
+            'Western Province': 'province-western',
+            'Central Province': 'province-central',
+            'Southern Province': 'province-southern',
+            'Northern Province': 'province-northern',
+            'Eastern Province': 'province-eastern',
+            'North Western Province': 'province-northwest',
+            'North Central Province': 'province-northcentral',
+            'Uva Province': 'province-uva',
+            'Sabaragamuwa Province': 'province-sabaragamuwa',
+        };
+        document.querySelectorAll('.province-block').forEach(block => {
+            const nameEl = block.querySelector('.province-name-text');
+            if (nameEl) {
+                const id = provinceMap[nameEl.textContent.trim()];
+                if (id) block.id = id;
+            }
+        });
+
+        // District blocks — match by h3
+        const districtMap = {
+            'Colombo': 'district-colombo', 'Gampaha': 'district-gampaha',
+            'Kalutara': 'district-kalutara', 'Kandy': 'district-kandy',
+            'Matale': 'district-matale', 'Nuwara Eliya': 'district-nuwara',
+            'Galle': 'district-galle', 'Matara': 'district-matara',
+            'Hambantota': 'district-hambantota', 'Jaffna': 'district-jaffna',
+            'Kilinochchi': 'district-kilinochchi', 'Mannar': 'district-mannar',
+            'Mullaitivu': 'district-mullaitivu', 'Vavuniya': 'district-vavuniya',
+            'Trincomalee': 'district-trincomalee', 'Batticaloa': 'district-batticaloa',
+            'Ampara': 'district-ampara', 'Kurunegala': 'district-kurunegala',
+            'Puttalam': 'district-puttalam', 'Anuradhapura': 'district-anuradhapura',
+            'Polonnaruwa': 'district-polonnaruwa', 'Badulla': 'district-badulla',
+            'Monaragala': 'district-monaragala', 'Ratnapura': 'district-ratnapura',
+            'Kegalle': 'district-kegalle',
+        };
+        document.querySelectorAll('.district-block').forEach(block => {
+            const h3 = block.querySelector('.district-subheading h3');
+            if (h3) {
+                const id = districtMap[h3.textContent.trim()];
+                if (id) block.id = id;
+            }
+        });
+
+        // Hotel cards — id by hotel name
+        document.querySelectorAll('.hotel-card').forEach(card => {
+            const name = card.getAttribute('data-hotel-name') || '';
+            card.id = 'hotel-' + name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+        });
+    }
+
+    // ── Global go function ──
+    window._searchGo = function(target, type, label) {
+        // Set input value (clean label)
+        searchInput.value = label.replace(/^[^\w\s]+\s*/, '').replace(/\s*(Province|District)$/i, '').trim();
+        dropdown.style.display = 'none';
+
+        // Clear old highlights
+        document.querySelectorAll('.province-block, .district-block').forEach(el => {
+            el.style.outline = '';
+            el.style.borderRadius = '';
+        });
+        document.querySelectorAll('.hotel-card').forEach(card => {
+            card.style.outline = '';
+            card.style.display = '';
+        });
+
+        if (type === 'hotel') {
+            // Hotel — scroll to hotels section, highlight matching card
+            document.getElementById('hotelsSection')?.scrollIntoView({ behavior: 'smooth' });
+            const hotelCards = document.querySelectorAll('.hotel-card');
+            const query = label.toLowerCase().replace('🏨', '').trim();
+            let found = false;
+            hotelCards.forEach(card => {
+                const name = card.querySelector('.hotel-name')?.textContent.toLowerCase() || '';
+                if (name.includes(query)) {
+                    card.style.display = 'block';
+                    card.style.outline = '2px solid #2dd4b8';
+                    if (!found) {
+                        found = true;
+                        setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400);
+                    }
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            // Show view all button
+            const viewAllBtn = document.getElementById('viewAllBtn');
+            if (viewAllBtn) viewAllBtn.style.display = 'flex';
+        } else {
+            // Province or District or Place — open districts view
+            const provinceView = document.getElementById('provinceView');
+            const districtsView = document.getElementById('districtsView');
+            if (provinceView && districtsView) {
+                provinceView.style.display = 'none';
+                districtsView.style.display = 'block';
+            }
+
+            const el = document.getElementById(target);
+            if (el) {
+                // Highlight
+                el.style.outline = '2px solid #2dd4b8';
+                el.style.borderRadius = '16px';
+                // Scroll
+                setTimeout(() => {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+                // Remove highlight after 3s
+                setTimeout(() => {
+                    el.style.outline = '';
+                    el.style.borderRadius = '';
+                }, 3000);
+            }
+        }
+    };
+
+    // ── Input event ──
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            showSuggestions(this.value.trim());
+            if (!this.value.trim()) {
+                // Reset everything
+                document.querySelectorAll('.hotel-card').forEach(c => {
+                    c.style.outline = '';
+                    c.style.display = '';
+                });
+                showLimitedHotels(4);
+            }
+        });
+
+        searchInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                const first = suggestions.find(s =>
+                    s.label.toLowerCase().includes(this.value.toLowerCase())
+                );
+                if (first) window._searchGo(first.target, first.type, first.label);
+                dropdown.style.display = 'none';
+            }
+            if (e.key === 'Escape') dropdown.style.display = 'none';
+        });
+    }
+
+    // Explore button
+    if (exploreBtn) {
+        exploreBtn.addEventListener('click', function () {
+            const query = searchInput.value.trim();
+            const first = suggestions.find(s =>
+                s.label.toLowerCase().includes(query.toLowerCase())
+            );
+            if (first) window._searchGo(first.target, first.type, first.label);
+            dropdown.style.display = 'none';
+        });
+    }
+
+    // Click outside — close dropdown
+    document.addEventListener('click', function (e) {
+        if (!searchWrapper.contains(e.target)) dropdown.style.display = 'none';
+    });
+
+    // Tag elements on load
+    document.addEventListener('DOMContentLoaded', tagElements);
+    if (document.readyState !== 'loading') tagElements();
+})();
+
+    </Script>
+</body>
+</html>

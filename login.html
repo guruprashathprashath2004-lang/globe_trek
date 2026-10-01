@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>GlobeTrek – Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Css/Loginpage Stylesheet.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo">
+          <img alt="Logo" src="places/Logo2.png" height="30px" width="50px" />
+          GlobeTrek
+        </div>
+        <div class="brand-sub">Welcome back</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Sign In</div>
+        <div class="card-sub">Enter your credentials to continue</div>
+
+        <div class="alert error" id="alertBox">
+          <span>✕</span>
+          <span id="alertMsg">Invalid email or password</span>
+        </div>
+
+        <form id="loginForm" onsubmit="submitLogin(event)">
+          <div class="field">
+            <label>Email Address</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+            <div class="err-msg" id="err_email">Please enter your email</div>
+          </div>
+
+          <div class="field" style="margin-bottom: 1.4rem">
+            <label>Password</label>
+            <div class="pw-wrap">
+              <input
+                type="password"
+                id="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+              />
+              <button
+                type="button"
+                class="pw-toggle"
+                id="togglePw"
+                onclick="togglePassword('password', 'togglePw')"
+                title="Show password"
+              >
+                👁
+              </button>
+            </div>
+            <div class="err-msg" id="err_password">
+              Please enter your password
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Sign In
+          </button>
+        </form>
+
+        <div class="divider"><span>New to GlobeTrek?</span></div>
+        <div class="reg-link">
+          <a href="register.html">Create a free account</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Role Notification Overlay ── -->
+    <!-- Styles come entirely from Loginpage Stylesheet.css -->
+    <div class="notify-overlay" id="notifyOverlay">
+      <div class="notify-box">
+        <div class="notify-icon" id="notifyIcon"></div>
+        <div class="notify-title" id="notifyTitle"></div>
+        <div id="notifyBadge"></div>
+        <div class="notify-sub" id="notifySub"></div>
+        <div class="notify-btns" id="notifyBtns"></div>
+        <div class="notify-countdown" id="notifyCountdown"></div>
+      </div>
+    </div>
+
+    <script>
+      /* ══════════════════════════════
+         Password show / hide
+      ══════════════════════════════ */
+      function togglePassword(inputId, btnId) {
+        const input = document.getElementById(inputId);
+        const btn = document.getElementById(btnId);
+        if (input.type === "password") {
+          input.type = "text";
+          btn.textContent = "🙈";
+          btn.title = "Hide password";
+        } else {
+          input.type = "password";
+          btn.textContent = "👁";
+          btn.title = "Show password";
+        }
+      }
+
+      /* ══════════════════════════════
+         Form helpers
+      ══════════════════════════════ */
+      function clearErrors() {
+        document.querySelectorAll(".err-msg").forEach(function (e) {
+          e.classList.remove("show");
+        });
+        document.querySelectorAll(".field input").forEach(function (i) {
+          i.classList.remove("error");
+        });
+        document.getElementById("alertBox").className = "alert error";
+      }
+
+      function showError(msg) {
+        document.getElementById("alertMsg").textContent = msg;
+        document.getElementById("alertBox").className = "alert error show";
+      }
+
+      /* ══════════════════════════════
+         Login submit
+      ══════════════════════════════ */
+      function submitLogin(e) {
+        e.preventDefault();
+        clearErrors();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        let valid = true;
+
+        if (!email) {
+          document.getElementById("err_email").classList.add("show");
+          document.getElementById("email").classList.add("error");
+          valid = false;
+        }
+        if (!password) {
+          document.getElementById("err_password").classList.add("show");
+          document.getElementById("password").classList.add("error");
+          valid = false;
+        }
+        if (!valid) return;
+
+        const btn = document.getElementById("submitBtn");
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span>Signing in…';
+
+        const fd = new FormData();
+        fd.append("email", email);
+        fd.append("password", password);
+
+        fetch("login.php", { method: "POST", body: fd })
+          .then((r) => r.json())
+          .then(function (data) {
+            btn.disabled = false;
+            btn.innerHTML = "Sign In";
+
+            if (data.status === "success") {
+              localStorage.setItem("gt_user", data.email);
+              localStorage.setItem("gt_username", data.username);
+              localStorage.setItem("gt_role", data.role);
+              localStorage.setItem("gt_user_id", data.user_id); // ← NEW
+
+              showNotify(data.role);
+            } else {
+              showError(data.message || "Invalid email or password.");
+            }
+          })
+          .catch(function () {
+            btn.disabled = false;
+            btn.innerHTML = "Sign In";
+            showError("Could not connect. Please try again.");
+          });
+      }
+
+      /* ══════════════════════════════
+         Notification popup
+         — All 3 roles get 2 buttons —
+      ══════════════════════════════ */
+      function showNotify(role) {
+        const icon = document.getElementById("notifyIcon");
+        const title = document.getElementById("notifyTitle");
+        const badge = document.getElementById("notifyBadge");
+        const sub = document.getElementById("notifySub");
+        const btns = document.getElementById("notifyBtns");
+        const countdown = document.getElementById("notifyCountdown");
+
+        countdown.textContent = "";
+
+        if (role === "customer") {
+          icon.textContent = "🎉";
+          title.textContent = "Login Successful!";
+          badge.innerHTML =
+            '<span class="notify-badge badge-customer">Customer</span>';
+          sub.textContent = "Welcome back! Where would you like to go?";
+          btns.innerHTML =
+            '<button class="notify-btn nbtn-outline" onclick="redirectNow(\'Homepage.html\')">🏠 Homepage</button>' +
+            '<button class="notify-btn nbtn-primary" onclick="redirectNow(\'bookings.html\')">🗺️ My Bookings</button>';
+        } else if (role === "admin") {
+          icon.textContent = "👑";
+          title.textContent = "Welcome, Administrator!";
+          badge.innerHTML =
+            '<span class="notify-badge badge-admin">Admin</span>';
+          sub.textContent =
+            "You have full access to GlobeTrek. Where would you like to go?";
+          btns.innerHTML =
+            '<button class="notify-btn nbtn-outline" onclick="redirectNow(\'Homepage.html\')">🏠 Homepage</button>' +
+            '<button class="notify-btn nbtn-primary" onclick="redirectNow(\'Admin.html\')">⚙️ Admin Dashboard</button>';
+        } else if (role === "staff") {
+          icon.textContent = "🧭";
+          title.textContent = "Welcome back, Staff!";
+          badge.innerHTML =
+            '<span class="notify-badge badge-staff">Staff</span>';
+          sub.textContent = "Glad to have you. Where would you like to go?";
+          btns.innerHTML =
+            '<button class="notify-btn nbtn-outline" onclick="redirectNow(\'Homepage.html\')">🏠 Homepage</button>' +
+            '<button class="notify-btn nbtn-primary" onclick="redirectNow(\'Staff.html\')">📋 Staff Dashboard</button>';
+        }
+
+        document.getElementById("notifyOverlay").classList.add("show");
+      }
+
+      /* ══════════════════════════════
+         Redirect
+      ══════════════════════════════ */
+      function redirectNow(url) {
+        window.location.href = url;
+      }
+    </script>
+  </body>
+</html>
